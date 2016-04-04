@@ -1,0 +1,45 @@
+{
+  "ProjectName": "Pallet Audit",
+  "ProjectGuid": "2289813f-888d-4673-8c2e-e5d5a0cfd0cc",
+  "projectVersion": 1,
+  "AppIdentifier": "com.telerik.PalletAudit",
+  "DisplayName": "Pallet Audit",
+  "Author": "",
+  "Description": "Pallet Audit",
+  "BundleVersion": "1.0",
+  "AndroidVersionCode": "1",
+  "iOSDeviceFamily": [
+    "1",
+    "2"
+  ],
+  "iOSBackgroundMode": [],
+  "ProjectTypeGuids": "{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}",
+  "FrameworkVersion": "3.7.0",
+  "AndroidPermissions": [
+    "android.permission.INTERNET"
+  ],
+  "DeviceOrientations": [
+    "Portrait",
+    "Landscape"
+  ],
+  "AndroidHardwareAcceleration": "false",
+  "iOSStatusBarStyle": "Default",
+  "Framework": "Cordova",
+  "WP8TileTitle": "",
+  "WP8Publisher": "",
+  "WP8Capabilities": [
+    "ID_CAP_NETWORKING",
+    "ID_CAP_WEBBROWSERCOMPONENT"
+  ],
+  "WP8Requirements": [],
+  "WP8PublisherID": "{41f106b6-55c5-4241-b034-8d4ba43856bc}",
+  "WP8ProductID": "{613968e8-aefb-4ae7-96e2-6ab0d20f1187}",
+  "WPSdk": "8.0",
+  "WP8PackageIdentityName": "1234Telerik.PalletAudit",
+  "WP8WindowsPublisherName": "CN=Telerik",
+  "WP8SupportedResolutions": [
+    "ID_RESOLUTION_WVGA",
+    "ID_RESOLUTION_WXGA",
+    "ID_RESOLUTION_HD720P"
+  ]
+}
