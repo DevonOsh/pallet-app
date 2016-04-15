@@ -5,15 +5,19 @@
     <title></title>
     <meta charset="utf-8">
     <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet">
+
     <link href="styles/main.css" rel="stylesheet">
 
     <script src="cordova.js"></script>
     <script src="kendo/js/jquery.min.js"></script>
     <script src="kendo/js/kendo.mobile.min.js"></script>
     <script src="app.js"></script>
+    <script src="lib/progress/progress.all.min.js"></script>
+    <script src="dataProviders/progressDataProvider.js"></script>
 </head>
 
 <body id="kendoUiMobileApp">
+    <script src="components/masterDetailView/index.js"></script>
     <script src="components/home/index.js"></script>
     <div data-role="layout" data-id="main">
         <header data-role="header">
@@ -21,10 +25,9 @@
                 <span data-role="view-title"></span>
             </div>
         </header>
-
         <footer data-role="footer">
             <div data-role="tabstrip" id="navigation-container">
-                <a href="components/home/view.html" data-icon="home">Home View</a>
+                <a href="components/masterDetailView/view.html" data-icon="organize">Audit Reports</a>
             </div>
         </footer>
     </div>
@@ -35,7 +38,6 @@
                 <span data-role="view-title"></span>
             </div>
         </header>
-
         <footer data-role="footer">
         </footer>
     </div>

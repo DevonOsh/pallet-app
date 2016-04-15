@@ -4,13 +4,327 @@
     {
       "type": "kendo-ui-mobile:view",
       "name": "home",
-      "components": [],
-      "title": "Home View",
+      "components": [
+        {
+          "type": "kendo-ui-mobile:form",
+          "components": [
+            {
+              "type": "kendo-ui-mobile:field",
+              "name": "pallet",
+              "title": "Pallet ID",
+              "inputType": "text",
+              "titlePosition": "left"
+            },
+            {
+              "type": "kendo-ui-mobile:field",
+              "name": "employee",
+              "title": "Employee Name",
+              "inputType": "text",
+              "titlePosition": "left",
+              "placeholder": "John Doe"
+            },
+            {
+              "type": "kendo-ui-mobile:field",
+              "name": "route",
+              "title": "Route",
+              "inputType": "text",
+              "titlePosition": "left",
+              "placeholder": "123"
+            },
+            {
+              "type": "kendo-ui-mobile:field",
+              "name": "palletNum",
+              "title": "Pallet Number",
+              "inputType": "text",
+              "titlePosition": "left"
+            },
+            {
+              "type": "kendo-ui-mobile:field",
+              "name": "mispicks",
+              "title": "Any mispicks found?",
+              "inputType": "switch"
+            },
+            {
+              "type": "kendo-ui-mobile:field",
+              "name": "builtWell",
+              "title": "Pallet built well?",
+              "inputType": "switch"
+            },
+            {
+              "type": "kendo-ui-mobile:field",
+              "name": "liquidsUpright",
+              "title": "All liquids upright?",
+              "inputType": "switch"
+            },
+            {
+              "type": "kendo-ui-mobile:field",
+              "name": "crushable",
+              "title": "Crushable cases on bottom of pallet?",
+              "inputType": "switch"
+            },
+            {
+              "type": "kendo-ui-mobile:field",
+              "name": "meatChem",
+              "title": "Meat/Chemicals on bottom of pallet?",
+              "inputType": "switch"
+            },
+            {
+              "type": "kendo-ui-mobile:field",
+              "name": "eachesBoxes",
+              "title": "Eaches in boxes per stop?",
+              "inputType": "switch"
+            },
+            {
+              "type": "kendo-ui-mobile:field",
+              "name": "stopSeq",
+              "title": "Stop sequence followed?",
+              "inputType": "switch"
+            },
+            {
+              "type": "kendo-ui-mobile:field",
+              "name": "wrapped",
+              "title": "Pallet wrapped well?",
+              "inputType": "switch"
+            },
+            {
+              "type": "kendo-ui-mobile:field",
+              "name": "comments",
+              "title": "Comments",
+              "inputType": "text",
+              "titlePosition": "left"
+            }
+          ],
+          "name": "homeModel",
+          "submitButton": "Submit",
+          "cancelButton": "Cancel"
+        }
+      ],
+      "title": "Pallet Audit",
+      "addToNavigation": false
+    },
+    {
+      "type": "kendo-ui-mobile:view",
+      "name": "masterDetailView",
+      "components": [
+        {
+          "type": "kendo-ui-mobile:editableList",
+          "listExtraFields": [],
+          "detailExtraFields": [],
+          "components": [
+            {
+              "type": "kendo-ui-mobile:editableListForm",
+              "components": [
+                {
+                  "type": "kendo-ui-mobile:editableListFormField",
+                  "name": "reportPallet",
+                  "title": "Short text",
+                  "inputType": "shortText",
+                  "dataBindingOptional": "PALLET_ID"
+                },
+                {
+                  "type": "kendo-ui-mobile:editableListFormField",
+                  "name": "reportPalletNum",
+                  "title": "Pallet number",
+                  "inputType": "shortText",
+                  "dataBindingOptional": "PALLET_NUM"
+                },
+                {
+                  "type": "kendo-ui-mobile:editableListFormField",
+                  "name": "reportRoute",
+                  "title": "Short text",
+                  "inputType": "shortText",
+                  "dataBindingOptional": "ROUTE"
+                },
+                {
+                  "type": "kendo-ui-mobile:editableListFormField",
+                  "name": "reportMispicks",
+                  "title": "Mispicks Found?",
+                  "inputType": "shortText",
+                  "dataBindingOptional": "MISPICKS"
+                },
+                {
+                  "type": "kendo-ui-mobile:editableListFormField",
+                  "name": "reportBuiltWell",
+                  "title": "Pallet built well?",
+                  "inputType": "shortText",
+                  "dataBindingOptional": "BUILT_WELL"
+                },
+                {
+                  "type": "kendo-ui-mobile:editableListFormField",
+                  "name": "reportLiquidsUpright",
+                  "title": "All liquids upright?",
+                  "inputType": "shortText",
+                  "dataBindingOptional": "LIQUIDS_UPRIGHT"
+                },
+                {
+                  "type": "kendo-ui-mobile:editableListFormField",
+                  "name": "reportCrushable",
+                  "title": "Crushable cases on bottom of pallet?",
+                  "inputType": "shortText",
+                  "dataBindingOptional": "CRUSHABLE"
+                },
+                {
+                  "type": "kendo-ui-mobile:editableListFormField",
+                  "name": "reportMeatChem",
+                  "title": "Meat/Chemicals on bottom of pallet?",
+                  "inputType": "shortText",
+                  "dataBindingOptional": "MEAT_CHEM"
+                },
+                {
+                  "type": "kendo-ui-mobile:editableListFormField",
+                  "name": "reportEachesBoxes",
+                  "title": "Eaches in boxes per stop?",
+                  "inputType": "shortText",
+                  "dataBindingOptional": "EACHES_BOXES"
+                },
+                {
+                  "type": "kendo-ui-mobile:editableListFormField",
+                  "name": "reportStopSeq",
+                  "title": "Stop sequence followed?",
+                  "inputType": "shortText",
+                  "dataBindingOptional": "STOP_SEQ"
+                },
+                {
+                  "type": "kendo-ui-mobile:editableListFormField",
+                  "name": "reportWrapped",
+                  "title": "Pallet wrapped well?",
+                  "inputType": "shortText",
+                  "dataBindingOptional": "WRAPPED"
+                },
+                {
+                  "type": "kendo-ui-mobile:editableListFormField",
+                  "name": "reportComments",
+                  "title": "Long text",
+                  "inputType": "longText",
+                  "dataBindingOptional": "COMMENTS"
+                }
+              ],
+              "name": "editableListForm17",
+              "formType": "detail"
+            },
+            {
+              "type": "kendo-ui-mobile:editableListForm",
+              "components": [
+                {
+                  "type": "kendo-ui-mobile:editableListFormField",
+                  "name": "createPallet",
+                  "title": "Pallet ID",
+                  "inputType": "text",
+                  "dataBinding": "PALLET_ID"
+                },
+                {
+                  "type": "kendo-ui-mobile:editableListFormField",
+                  "name": "createPalletNum",
+                  "title": "Pallet number",
+                  "inputType": "text",
+                  "dataBinding": "PALLET_NUM"
+                },
+                {
+                  "type": "kendo-ui-mobile:editableListFormField",
+                  "name": "createRoute",
+                  "title": "Route",
+                  "inputType": "text",
+                  "dataBinding": "ROUTE"
+                },
+                {
+                  "type": "kendo-ui-mobile:editableListFormField",
+                  "name": "createMispicks",
+                  "title": "Mispicks found?",
+                  "inputType": "switch",
+                  "dataBinding": "MISPICKS"
+                },
+                {
+                  "type": "kendo-ui-mobile:editableListFormField",
+                  "name": "createBuiltWell",
+                  "title": "Pallet built well?",
+                  "inputType": "switch",
+                  "dataBinding": "BUILT_WELL"
+                },
+                {
+                  "type": "kendo-ui-mobile:editableListFormField",
+                  "name": "createLiquidsUpright",
+                  "title": "All liquids upright?",
+                  "inputType": "switch",
+                  "dataBinding": "LIQUIDS_UPRIGHT"
+                },
+                {
+                  "type": "kendo-ui-mobile:editableListFormField",
+                  "name": "createCrushable",
+                  "title": "Crushable cases on bottom of pallet?",
+                  "inputType": "switch",
+                  "dataBinding": "CRUSHABLE"
+                },
+                {
+                  "type": "kendo-ui-mobile:editableListFormField",
+                  "name": "createMeatChem",
+                  "title": "Meat/Chemicals on bottom of pallet?",
+                  "inputType": "switch",
+                  "dataBinding": "MEAT_CHEM"
+                },
+                {
+                  "type": "kendo-ui-mobile:editableListFormField",
+                  "name": "createEachesBoxes",
+                  "title": "Eaches in boxes per stop?",
+                  "inputType": "switch",
+                  "dataBinding": "EACHES_BOXES"
+                },
+                {
+                  "type": "kendo-ui-mobile:editableListFormField",
+                  "name": "createStopSeq",
+                  "title": "Stop sequence followed?",
+                  "inputType": "switch",
+                  "dataBinding": "STOP_SEQ"
+                },
+                {
+                  "type": "kendo-ui-mobile:editableListFormField",
+                  "name": "createWrapped",
+                  "title": "Pallet wrapped well?",
+                  "inputType": "switch",
+                  "dataBinding": "WRAPPED"
+                },
+                {
+                  "type": "kendo-ui-mobile:editableListFormField",
+                  "name": "createComments",
+                  "title": "Comments",
+                  "inputType": "text",
+                  "dataBinding": "COMMENTS"
+                }
+              ],
+              "name": "editableListForm22",
+              "formType": "add"
+            }
+          ],
+          "name": "masterDetailViewModel",
+          "dataProvider": "progressDataProvider",
+          "collection": "Pallet_Audit",
+          "headerField": "STAMP_DT",
+          "subHeaderField": "EMP_NAME",
+          "filterField": "STAMP_DT",
+          "pullToRefresh": true,
+          "endlessScroll": false,
+          "deleteItemButton": false,
+          "detailHeaderField": "EMP_NAME",
+          "addItemForm": true,
+          "editItemForm": false
+        }
+      ],
+      "title": "Audit Reports",
       "addToNavigation": true,
-      "icon": "home"
+      "icon": "organize"
     }
   ],
-  "dataProviders": [],
+  "dataProviders": [
+    {
+      "type": "kendo-ui-mobile:dataProvider",
+      "name": "progressDataProvider",
+      "catalogContent": "[{\"name\":\"Pallet_Audit\",\"path\":\"/Pallet_Audit\",\"autoSave\":true,\"schema\":{\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"dsPALLET_AUDIT\":{\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"ttPALLET_AUDIT\":{\"type\":\"array\",\"items\":{\"additionalProperties\":false,\"properties\":{\"_id\":{\"type\":\"string\",\"name\":\"_id\"},\"_errorString\":{\"type\":\"string\",\"name\":\"_errorString\"},\"PALLET_ID\":{\"type\":\"string\",\"ablType\":\"CHARACTER\",\"default\":\"\",\"title\":\"PalletID\",\"name\":\"PALLET_ID\"},\"EMP_NAME\":{\"type\":\"string\",\"ablType\":\"CHARACTER\",\"default\":\"\",\"title\":\"EmployeeName\",\"name\":\"EMP_NAME\"},\"PALLET_NUM\":{\"type\":\"string\",\"ablType\":\"CHARACTER\",\"default\":\"\",\"title\":\"PalletNumber\",\"name\":\"PALLET_NUM\"},\"ROUTE\":{\"type\":\"string\",\"ablType\":\"CHARACTER\",\"default\":\"\",\"title\":\"Route\",\"name\":\"ROUTE\"},\"STAMP_DT\":{\"type\":\"string\",\"ablType\":\"DATE\",\"default\":\"2016-03-25\",\"title\":\"Date\",\"format\":\"date\",\"name\":\"STAMP_DT\"},\"STAMP_TM\":{\"type\":\"string\",\"ablType\":\"CHARACTER\",\"default\":\"\",\"title\":\"Time\",\"name\":\"STAMP_TM\"},\"MISPICKS\":{\"type\":\"boolean\",\"ablType\":\"LOGICAL\",\"default\":false,\"title\":\"Mispicks\",\"name\":\"MISPICKS\"},\"BUILT_WELL\":{\"type\":\"boolean\",\"ablType\":\"LOGICAL\",\"default\":false,\"title\":\"BuiltWell\",\"name\":\"BUILT_WELL\"},\"LIQUIDS_UPRIGHT\":{\"type\":\"boolean\",\"ablType\":\"LOGICAL\",\"default\":false,\"title\":\"LiquidsUpright\",\"name\":\"LIQUIDS_UPRIGHT\"},\"CRUSHABLE\":{\"type\":\"boolean\",\"ablType\":\"LOGICAL\",\"default\":false,\"title\":\"Crushable\",\"name\":\"CRUSHABLE\"},\"MEAT_CHEM\":{\"type\":\"boolean\",\"ablType\":\"LOGICAL\",\"default\":false,\"title\":\"MeatChem\",\"name\":\"MEAT_CHEM\"},\"EACHES_BOXES\":{\"type\":\"boolean\",\"ablType\":\"LOGICAL\",\"default\":false,\"title\":\"EachesBoxes\",\"name\":\"EACHES_BOXES\"},\"STOP_SEQ\":{\"type\":\"boolean\",\"ablType\":\"LOGICAL\",\"default\":false,\"title\":\"StopSeq\",\"name\":\"STOP_SEQ\"},\"WRAPPED\":{\"type\":\"boolean\",\"ablType\":\"LOGICAL\",\"default\":false,\"title\":\"Wrapped\",\"name\":\"WRAPPED\"},\"COMMENTS\":{\"type\":\"string\",\"ablType\":\"CHARACTER\",\"default\":\"\",\"title\":\"Comments\",\"name\":\"COMMENTS\"}}}}}}}},\"operations\":[{\"path\":\"\",\"useBeforeImage\":false,\"type\":\"delete\",\"verb\":\"delete\",\"params\":[{\"name\":\"dsPALLET_AUDIT\",\"type\":\"REQUEST_BODY\"}],\"url\":\"/rest/Pallet_AuditService/Pallet_Audit\"},{\"path\":\"\",\"useBeforeImage\":false,\"type\":\"update\",\"verb\":\"put\",\"params\":[{\"name\":\"dsPALLET_AUDIT\",\"type\":\"REQUEST_BODY\"}],\"url\":\"/rest/Pallet_AuditService/Pallet_Audit\"},{\"path\":\"?filter={filter}\",\"useBeforeImage\":false,\"type\":\"read\",\"verb\":\"get\",\"params\":[],\"url\":\"/rest/Pallet_AuditService/Pallet_Audit?filter={filter}\"},{\"path\":\"\",\"useBeforeImage\":false,\"type\":\"create\",\"verb\":\"post\",\"params\":[{\"name\":\"dsPALLET_AUDIT\",\"type\":\"REQUEST_BODY\"}],\"url\":\"/rest/Pallet_AuditService/Pallet_Audit\"}],\"fn\":{},\"url\":\"/rest/Pallet_AuditService/Pallet_Audit\",\"fields\":{\"ttPALLET_AUDIT\":[{\"type\":\"string\",\"name\":\"_errorString\"},{\"type\":\"string\",\"ablType\":\"CHARACTER\",\"default\":\"\",\"title\":\"PalletID\",\"name\":\"PALLET_ID\"},{\"type\":\"string\",\"ablType\":\"CHARACTER\",\"default\":\"\",\"title\":\"EmployeeName\",\"name\":\"EMP_NAME\"},{\"type\":\"string\",\"ablType\":\"CHARACTER\",\"default\":\"\",\"title\":\"PalletNumber\",\"name\":\"PALLET_NUM\"},{\"type\":\"string\",\"ablType\":\"CHARACTER\",\"default\":\"\",\"title\":\"Route\",\"name\":\"ROUTE\"},{\"type\":\"string\",\"ablType\":\"DATE\",\"default\":\"2016-03-25\",\"title\":\"Date\",\"format\":\"date\",\"name\":\"STAMP_DT\"},{\"type\":\"string\",\"ablType\":\"CHARACTER\",\"default\":\"\",\"title\":\"Time\",\"name\":\"STAMP_TM\"},{\"type\":\"boolean\",\"ablType\":\"LOGICAL\",\"default\":false,\"title\":\"Mispicks\",\"name\":\"MISPICKS\"},{\"type\":\"boolean\",\"ablType\":\"LOGICAL\",\"default\":false,\"title\":\"BuiltWell\",\"name\":\"BUILT_WELL\"},{\"type\":\"boolean\",\"ablType\":\"LOGICAL\",\"default\":false,\"title\":\"LiquidsUpright\",\"name\":\"LIQUIDS_UPRIGHT\"},{\"type\":\"boolean\",\"ablType\":\"LOGICAL\",\"default\":false,\"title\":\"Crushable\",\"name\":\"CRUSHABLE\"},{\"type\":\"boolean\",\"ablType\":\"LOGICAL\",\"default\":false,\"title\":\"MeatChem\",\"name\":\"MEAT_CHEM\"},{\"type\":\"boolean\",\"ablType\":\"LOGICAL\",\"default\":false,\"title\":\"EachesBoxes\",\"name\":\"EACHES_BOXES\"},{\"type\":\"boolean\",\"ablType\":\"LOGICAL\",\"default\":false,\"title\":\"StopSeq\",\"name\":\"STOP_SEQ\"},{\"type\":\"boolean\",\"ablType\":\"LOGICAL\",\"default\":false,\"title\":\"Wrapped\",\"name\":\"WRAPPED\"},{\"type\":\"string\",\"ablType\":\"CHARACTER\",\"default\":\"\",\"title\":\"Comments\",\"name\":\"COMMENTS\"}]},\"primaryKeys\":{},\"_dataSetName\":\"dsPALLET_AUDIT\",\"generic\":{}}]",
+      "title": "Progress Data Service",
+      "source": "jsdo",
+      "url": "http://localhost:8810/Pallet_Audit",
+      "catalogUrl": "http://localhost:8810/Pallet_Audit/static/Pallet_AuditService.json",
+      "authentication": "anonymous"
+    }
+  ],
   "name": "kendoUiMobileApp",
   "navigation": "tabstrip",
   "view": "home",

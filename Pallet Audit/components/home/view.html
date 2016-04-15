@@ -1,4 +1,162 @@
-<div data-role="view" data-title="Home View" data-layout="main" data-model="app.home" data-show="app.home.onShow" data-after-show="app.home.afterShow">
+<div data-role="view" data-title="Pallet Audit" data-layout="main-nonav" data-model="app.home" data-show="app.home.onShow" data-after-show="app.home.afterShow">
+    <div id="homeModel" class="form-view">
+        <form>
+            <ul class="form-content" data-role="listview" data-style="inset">
+                <li class="form-content-item">
+
+
+                    <label>
+
+                        <span>Pallet ID</span>
+
+                        <input data-bind="value: homeModel.fields.pallet" type="text">
+                    </label>
+
+                </li>
+                <li class="form-content-item">
+
+
+                    <label>
+
+                        <span>Employee Name</span>
+
+                        <input data-bind="value: homeModel.fields.employee" placeholder="John Doe" type="text">
+                    </label>
+
+                </li>
+                <li class="form-content-item">
+
+
+                    <label>
+
+                        <span>Route</span>
+
+                        <input data-bind="value: homeModel.fields.route" placeholder="123" type="text">
+                    </label>
+
+                </li>
+                <li class="form-content-item">
+
+
+                    <label>
+
+                        <span>Pallet Number</span>
+
+                        <input data-bind="value: homeModel.fields.palletNum" type="text">
+                    </label>
+
+                </li>
+                <li class="form-content-item">
+
+
+                    <label>
+
+                        <span>Any mispicks found?</span>
+
+                        <input data-bind="value: homeModel.fields.mispicks" data-role="switch">
+                    </label>
+
+                </li>
+                <li class="form-content-item">
+
+
+                    <label>
+
+                        <span>Pallet built well?</span>
+
+                        <input data-bind="value: homeModel.fields.builtWell" data-role="switch">
+                    </label>
+
+                </li>
+                <li class="form-content-item">
+
+
+                    <label>
+
+                        <span>All liquids upright?</span>
+
+                        <input data-bind="value: homeModel.fields.liquidsUpright" data-role="switch">
+                    </label>
+
+                </li>
+                <li class="form-content-item">
+
+
+                    <label>
+
+                        <span>Crushable cases on bottom of pallet?</span>
+
+                        <input data-bind="value: homeModel.fields.crushable" data-role="switch">
+                    </label>
+
+                </li>
+                <li class="form-content-item">
+
+
+                    <label>
+
+                        <span>Meat/Chemicals on bottom of pallet?</span>
+
+                        <input data-bind="value: homeModel.fields.meatChem" data-role="switch">
+                    </label>
+
+                </li>
+                <li class="form-content-item">
+
+
+                    <label>
+
+                        <span>Eaches in boxes per stop?</span>
+
+                        <input data-bind="value: homeModel.fields.eachesBoxes" data-role="switch">
+                    </label>
+
+                </li>
+                <li class="form-content-item">
+
+
+                    <label>
+
+                        <span>Stop sequence followed?</span>
+
+                        <input data-bind="value: homeModel.fields.stopSeq" data-role="switch">
+                    </label>
+
+                </li>
+                <li class="form-content-item">
+
+
+                    <label>
+
+                        <span>Pallet wrapped well?</span>
+
+                        <input data-bind="value: homeModel.fields.wrapped" data-role="switch">
+                    </label>
+
+                </li>
+                <li class="form-content-item">
+
+
+                    <label>
+
+                        <span>Comments</span>
+
+                        <input data-bind="value: homeModel.fields.comments" type="text">
+                    </label>
+
+                </li>
+            </ul>
+
+            <div class="button-group">
+                <a data-role="button" data-bind="events: { click: homeModel.cancel }">Cancel</a>
+                <a class="primary" data-role="button" data-bind="events: { click: homeModel.submit }">Submit</a>
+            </div>
+        </form>
+        <!-- START_CUSTOM_CODE_homeModel -->
+        <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
+
+        <!-- END_CUSTOM_CODE_homeModel -->
+    </div>
 
     <!-- START_CUSTOM_CODE_home -->
     <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
