@@ -3,6 +3,14 @@
   "views": [
     {
       "type": "kendo-ui-mobile:view",
+      "name": "welcomeView",
+      "components": [],
+      "title": "Welcome!",
+      "addToNavigation": true,
+      "icon": "home"
+    },
+    {
+      "type": "kendo-ui-mobile:view",
       "name": "home",
       "components": [
         {
@@ -100,7 +108,8 @@
         }
       ],
       "title": "Pallet Audit",
-      "addToNavigation": false
+      "addToNavigation": true,
+      "icon": "edit"
     },
     {
       "type": "kendo-ui-mobile:view",
@@ -210,6 +219,7 @@
                   "name": "createPallet",
                   "title": "Pallet ID",
                   "inputType": "text",
+                  "titlePosition": "left",
                   "dataBinding": "PALLET_ID"
                 },
                 {
@@ -217,6 +227,7 @@
                   "name": "createPalletNum",
                   "title": "Pallet number",
                   "inputType": "text",
+                  "titlePosition": "left",
                   "dataBinding": "PALLET_NUM"
                 },
                 {
@@ -224,6 +235,7 @@
                   "name": "createRoute",
                   "title": "Route",
                   "inputType": "text",
+                  "titlePosition": "left",
                   "dataBinding": "ROUTE"
                 },
                 {
@@ -287,6 +299,7 @@
                   "name": "createComments",
                   "title": "Comments",
                   "inputType": "text",
+                  "titlePosition": "left",
                   "dataBinding": "COMMENTS"
                 }
               ],
@@ -303,14 +316,37 @@
           "pullToRefresh": true,
           "endlessScroll": false,
           "deleteItemButton": false,
-          "detailHeaderField": "EMP_NAME",
+          "detailHeaderFieldSource": "static",
+          "detailHeaderFieldValue": "Detail",
           "addItemForm": true,
+          "addScreenHeaderValue": "Create",
           "editItemForm": false
         }
       ],
       "title": "Audit Reports",
       "addToNavigation": true,
       "icon": "organize"
+    },
+    {
+      "type": "kendo-ui-mobile:view",
+      "name": "loginView",
+      "components": [
+        {
+          "type": "kendo-ui-mobile:authentication",
+          "name": "loginViewModel",
+          "dataProvider": "progressDataProvider",
+          "emailLabel": "Email",
+          "passwordLabel": "Password",
+          "signinLabel": "Sign In",
+          "signinRedirect": "welcomeView",
+          "enableRegistration": false,
+          "enableLogout": true,
+          "logoutLabel": "Sign Out",
+          "enableRememberme": false
+        }
+      ],
+      "title": "Login",
+      "addToNavigation": false
     }
   ],
   "dataProviders": [
@@ -326,8 +362,10 @@
     }
   ],
   "name": "kendoUiMobileApp",
-  "navigation": "tabstrip",
+  "navigation": "drawer",
   "view": "home",
-  "transition": "slide",
-  "skin": "flat"
+  "skin": "flat",
+  "skinMainColor": "#1a1a1a",
+  "skinTextColor": "#ffffff",
+  "skinAccentColor": "#10c4b2"
 }

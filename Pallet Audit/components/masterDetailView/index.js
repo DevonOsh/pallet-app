@@ -93,8 +93,8 @@ app.masterDetailView = kendo.observable({
                     dataSource = masterDetailViewModel.get('dataSource'),
                     itemModel = dataSource.getByUid(item);
 
-                if (!itemModel.EMP_NAME) {
-                    itemModel.EMP_NAME = String.fromCharCode(160);
+                if (!itemModel.STAMP_DT) {
+                    itemModel.STAMP_DT = String.fromCharCode(160);
                 }
 
                 masterDetailViewModel.set('currentItem', null);
@@ -175,6 +175,9 @@ app.masterDetailView = kendo.observable({
 
 // START_CUSTOM_CODE_masterDetailViewModel
 // Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes
+
+
+
 
 // you can handle the beforeFill / afterFill events here. For example:
 /*
