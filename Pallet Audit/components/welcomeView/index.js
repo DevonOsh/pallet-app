@@ -14,12 +14,23 @@ app.welcomeView = kendo.observable({
 
 var dataProvider = app.data.progressDataProvider;
     dataProvider.loadCatalogs().then(function _catalogsLoaded() {
-        var jsdo = new progress.data.JSDO({name: 'Pallet_Audit'});
-		jsdo.autoSort = true;
-        jsdo.setSortFields( "STAMP_DT:DESC" );
-        jsdo.fill();
+        var jsdo = new progress.data.JSDO({name: 'Pallet_Audit'}),
+            lastDate,
+            pallet;
+		jsdo.sort(["PALLET_ID:DESC"]);
+        jsdo.fill().done(function(jsdo, success, request) {
+            if (success) {
+                var item = request.response.dsPALLET_AUDIT.ttPALLET_AUDIT[0];
+                    lastDate = item.STAMP_DT;
+                	pallet = item.PALLET_ID;
+                alert(lastDate + " " + pallet);
+            }
+        }).fail(function() {
+            lastDate = "No entry found";
+            alert(lastDate);
+        });
     });
-
+    
 })(app.welcomeView);
 
 
