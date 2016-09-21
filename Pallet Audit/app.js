@@ -54,6 +54,14 @@
             return navigator.connection.type !== 'none';
         }
     };
+    
+    app.JSDOSettings = {
+        "serviceURI": "http://10.0.1.239:8810/Pallet_Audit2",
+        "catalogURIs": "http://10.0.1.239:8810/Pallet_Audit2/static/Pallet_Audit2Service.json",
+        "authenticationModel":"anonymous"
+    };
+    
+    app.palletAuditJSDO = 
 }());
 
 // START_CUSTOM_CODE_kendoUiMobileApp

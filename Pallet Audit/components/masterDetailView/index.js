@@ -41,7 +41,7 @@ app.masterDetailView = kendo.observable({
             transport: {},
             error: function(e) {
                 if (e.xhr) {
-                    alert(JSON.stringify(e.xhr));
+                    console.log(e.xhr);
                 }
             },
             schema: {

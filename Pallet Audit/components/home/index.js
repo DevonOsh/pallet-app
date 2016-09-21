@@ -13,14 +13,15 @@ app.home = kendo.observable({
     var homeModel = kendo.observable({
         fields: {
             comments: '',
-            wrapped: '',
-            stopSeq: '',
-            eachesBoxes: '',
-            meatChem: '',
-            crushable: '',
-            liquidsUpright: '',
-            builtWell: '',
-            mispicks: '',
+            wrapped: false,
+            stopSeq: false,
+            eachesBoxes: false,
+            meatChem: false,
+            crushable: false,
+            liquidsUpright: false,
+            builtWell: false,
+            mispicks: false,
+            catchWgt: false,
             palletNum: '',
             route: '',
             employee: '',
@@ -59,12 +60,13 @@ app.home.homeModel.fields = function() {
 };
 */
 
+
+
 app.home.homeModel.submit = function() {
     var dataProvider = app.data.progressDataProvider;
 
     dataProvider.loadCatalogs().then(function _catalogsLoaded() {
-        /*var model = app.home.homeModel.fields.toJSON(),*/
-        
+       
         //Get the current date and convert it into a usable format
         var currentDate = new Date(),
         	yyyy = currentDate.getFullYear(),
@@ -73,8 +75,6 @@ app.home.homeModel.submit = function() {
             formatDate = yyyy + "-" + mm + "-" + dd,
             dateString = currentDate.toString(),
             time = dateString.substring(16,21);
-        
-        alert("Date: " + formatDate +" Time: " + time);
         
         var fieldLocation = app.home.homeModel.fields,
          	model = {
@@ -87,6 +87,7 @@ app.home.homeModel.submit = function() {
                 "LIQUIDS_UPRIGHT":String(fieldLocation.liquidsUpright),
                 "BUILT_WELL": String(fieldLocation.builtWell),
                 "MISPICKS": String(fieldLocation.mispicks),
+                "Catch_Wgt": String(fieldLocation.catchWgt),
                 "STAMP_TM": time,
                 "STAMP_DT": formatDate,
                 "ROUTE": String(fieldLocation.route),
@@ -102,27 +103,37 @@ app.home.homeModel.submit = function() {
 
         jsdo.create(model);
         jsdo.saveChanges();
-
-        app.mobileApp.navigate('#components/welcomeView/view.html');
-
-        var modelString = JSON.stringify(model);
-        alert(modelString);
-        var jsdoString = JSON.stringify(jsdo);
-        alert(jsdoString);
-    });
-
-    var fieldLocale = app.home.homeModel.fields;
-    
         
-    
-
-    alert("Comments: " + typeof fieldLocale.comments);
-    alert("Route: " + typeof fieldLocale.route);
-    alert("Employee: " + typeof fieldLocale.employee);
-    alert("Mispicks: " + typeof fieldLocale.mispicks);
-    alert("Built well: " + typeof fieldLocale.builtWell);
-
-
+        app.mobileApp.navigate('#components/welcomeView/view.html');
+        
+        function clearInputs() {
+            
+            //var mispicksSwitch = $("#mispicks").data("kendoMobileSwitch");
+            //var wellBuiltSwitch = $("#wellBuilt").data("kendoMobileSwitch");
+            //var liquidsUprightSwitch = $("#liquidsUpright").data("kendoMobileSwitch");
+            //var crushableSwitch = $("#crushable").data("kendoMobileSwitch");
+            //var meatChemSwitch = $("#meatChem").data("kendoMobileSwitch");
+            //var eachesSwitch = $("#eaches").data("kendoMobileSwitch");
+            //var stopSeqSwitch = $("#stopSeq").data("kendoMobileSwitch");
+            //var wrappedWellSwitch = $("#mispicks").data("kendoMobileSwitch");
+            
+            $("#palletID").val('');
+            $("#empName").val('');
+            $("#route").val('');
+            $("#palletNum").val('');
+            //mispicksSwitch.check(false);
+            //wellBuiltSwitch.check(false);
+            //liquidsUprightSwitch.check(false);
+            //crushableSwitch.check(false);
+            //meatChemSwitch.check(false);
+            //eachesSwitch.check(false);
+            //stopSeqSwitch.check(false);
+            //wrappedWellSwitch.check(false);
+            $("#comments").val('');
+        }
+        
+        clearInputs();
+    });    
 };
 
 app.home.homeModel.cancel = function() {

@@ -4,17 +4,28 @@
 <head>
     <title></title>
     <meta charset="utf-8">
-    <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet">
+    
+    <!--<link href="kendo/styles/kendo.dataviz.flat.min.css" rel="stylesheet">
+    <link href="kendo/styles/kendo.dataviz.mobile.min.css" rel="stylesheet">-->
+    <link href="kendo/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="kendo/styles/kendo.default.min.css" rel="stylesheet" />
+    <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
 
     <link href="styles/overrides.css" rel="stylesheet">
     <link href="styles/main.css" rel="stylesheet">
 
     <script src="cordova.js"></script>
     <script src="kendo/js/jquery.min.js"></script>
-    <script src="kendo/js/kendo.mobile.min.js"></script>
-    <script src="app.js"></script>
+    <!--<script src="kendo/js/kendo.dataviz.min.js"></script>
+    <script src="kendo/js/kendo.grid.min.js"></script>
+    <script src="kendo/js/kendo.mobile.min.js"></script>-->
+    <script src="kendo/js/kendo.all.min.js"></script>
     <script src="lib/progress/progress.all.min.js"></script>
-    <script src="dataProviders/progressDataProvider.js"></script>
+   
+    <script src="app.js"></script>
+    <!--<script src="dataProviders/progressDataProvider.js"></script>-->
+    <script src="components/auditDataView/auditData.js"></script>
+    <script src="components/auditGridView/auditGrid.js"></script>
 </head>
 
 <body id="kendoUiMobileApp">
@@ -22,6 +33,7 @@
     <script src="components/masterDetailView/index.js"></script>
     <script src="components/home/index.js"></script>
     <script src="components/welcomeView/index.js"></script>
+    
     <div data-role="layout" data-id="main">
         <header data-role="header">
             <div data-role="navbar">
@@ -46,10 +58,12 @@
             </div>
         </header>
         <ul id="navigation-container" data-role="listview">
-            <li><a href="components/welcomeView/view.html" data-icon="home">Welcome!</a></li>
+            <!--<li><a href="components/welcomeView/view.html" data-icon="home">Welcome!</a></li>-->
             <li><a href="components/home/view.html" data-icon="edit">Pallet Audit</a></li>
-            <li><a href="components/masterDetailView/view.html" data-icon="organize">Audit Reports</a></li>
-            <li id="loginViewModellogout"><a href="components/loginView/view.html?logout=true" data-position="end" data-icon="action">Sign Out</a></li>
+            <li><a href="components/masterDetailView/view.html" data-icon="organize">Past Audits</a></li>
+            <li><a href="components/auditDataView/auditDataView.html">Audit Data</a></li>
+            <li><a href="components/auditGridView/auditGridView.html">Audit Grid</a></li>
+            <!--<li id="loginViewModellogout"><a href="components/loginView/view.html?logout=true" data-position="end" data-icon="action">Sign Out</a></li>-->
         </ul>
     </div>
     <!-- START_CUSTOM_CODE_kendoUiMobileApp -->

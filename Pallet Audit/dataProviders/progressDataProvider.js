@@ -3,8 +3,8 @@
 (function() {
     var jsdoSession,
         jsdoSettings = {
-            serviceURI: 'http://localhost:8810/Pallet_Audit',
-            catalogURIs: 'http://localhost:8810/Pallet_Audit/static/Pallet_AuditService.json',
+            serviceURI: 'http://10.0.1.239:8810/Pallet_Audit',
+            catalogURIs: 'http://10.0.1.239:8810/Pallet_Audit/static/Pallet_AuditService.json',
             authenticationModel: 'anonymous'
         },
         userFunctions = {
