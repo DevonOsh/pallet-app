@@ -12,15 +12,17 @@
         lastAuditDate;
     
     app.welcomeView = {
-        onShow: function() {
-     		//Fill and sort the pallet JSDO in descending order by date
+        beforeShow: function() {
+            //Fill and sort the pallet JSDO in descending order by date
             var onAfterFill = app.welcomeView.getLastAuditDate;
             palletJSDO.subscribe('afterFill', onAfterFill);
             palletJSDO.autoSort = true;
             palletJSDO.setSortFields(["STAMP_DT:DESCENDING"]);
             palletJSDO.fill();
-            
+        },
+        onShow: function() {          
             var name = app.userInfo.firstName;
+            
             $("#firstName").html(name);
             $("#lastAuditDate").html(lastAuditDate);
         },

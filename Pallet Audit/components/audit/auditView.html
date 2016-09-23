@@ -1,5 +1,5 @@
-<div data-role="view" data-title="Pallet Audit" data-layout="main" data-model="app.home" data-show="app.home.onShow" data-after-show="app.home.afterShow">
-    <div id="homeModel" class="form-view">
+<div data-role="view" data-title="Pallet Audit" data-layout="main" data-model="app.auditModel" data-show="app.audit.onShow">
+    <div id="auditModel" class="form-view">
         <form id="palletForm">
             <ul class="form-content" data-role="listview" data-style="inset">
                 <li class="form-content-item">
@@ -9,7 +9,7 @@
 
                         <span>Pallet ID</span>
 
-                        <input id="palletID" data-bind="value: homeModel.fields.pallet" type="text">
+                        <input id="palletID" data-bind="value: PALLET_ID" type="text">
                     </label>
 
                 </li>
@@ -20,7 +20,7 @@
 
                         <span>Employee Name</span>
 
-                        <input id="empName" data-bind="value: homeModel.fields.employee" placeholder="John Doe" type="text">
+                        <input id="empName" data-bind="value: EMP_NAME" placeholder="John Doe" type="text">
                     </label>
 
                 </li>
@@ -31,7 +31,7 @@
 
                         <span>Route</span>
 
-                        <input id="route" data-bind="value: homeModel.fields.route" placeholder="123" type="text">
+                        <input id="route" data-bind="value: ROUTE" placeholder="123" type="text">
                     </label>
 
                 </li>
@@ -42,7 +42,7 @@
 
                         <span>Pallet Number</span>
 
-                        <input id="palletNum" data-bind="value: homeModel.fields.palletNum" type="text">
+                        <input id="palletNum" data-bind="value: PALLET_NUM" type="text">
                     </label>
 
                 </li>
@@ -53,7 +53,7 @@
 
                         <span>Any mispicks found?</span>
 
-                        <input id="mispicks" data-bind="value: homeModel.fields.mispicks" data-role="switch" data-off-label="No" data-on-label="Yes" data-checked="false"/>
+                        <input id="mispicks" data-bind="value: MISPICKS" data-role="switch" data-off-label="No" data-on-label="Yes" data-checked="false"/>
                     </label>
 
                 </li>
@@ -64,7 +64,7 @@
 
                         <span>Pallet built well?</span>
 
-                        <input id="wellBuilt" data-bind="value: homeModel.fields.builtWell" data-role="switch" data-off-label="No" data-on-label="Yes" data-checked="false" >
+                        <input id="wellBuilt" data-bind="value: BUILT_WELL" data-role="switch" data-off-label="No" data-on-label="Yes" data-checked="false" >
                     </label>
 
                 </li>
@@ -75,7 +75,7 @@
 
                         <span>All liquids upright?</span>
 
-                        <input id="liquidsUpright" data-bind="value: homeModel.fields.liquidsUpright" data-role="switch" data-off-label="No" data-on-label="Yes"data-checked="false" >
+                        <input id="liquidsUpright" data-bind="value: LIQUIDS_UPRIGHT" data-role="switch" data-off-label="No" data-on-label="Yes" data-checked="false" >
                     </label>
 
                 </li>
@@ -86,7 +86,7 @@
 
                         <span>Crushable cases on bottom of pallet?</span>
 
-                        <input id="crushable" data-bind="value: homeModel.fields.crushable" data-role="switch" data-off-label="No" data-on-label="Yes" data-checked="false">
+                        <input id="crushable" data-bind="value: CRUSHABLE" data-role="switch" data-off-label="No" data-on-label="Yes" data-checked="false">
                     </label>
 
                 </li>
@@ -97,7 +97,7 @@
 
                         <span>Meat/Chemicals on bottom of pallet?</span>
 
-                        <input id="meatChem" data-bind="value: homeModel.fields.meatChem" data-role="switch" data-off-label="No" data-on-label="Yes" data-checked="false" >
+                        <input id="meatChem" data-bind="value: MEAT_CHEM" data-role="switch" data-off-label="No" data-on-label="Yes" data-checked="false" >
                     </label>
 
                 </li>
@@ -108,7 +108,7 @@
 
                         <span>Eaches in boxes per stop?</span>
 
-                        <input id="eaches" data-bind="value: homeModel.fields.eachesBoxes" data-role="switch" data-off-label="No" data-on-label="Yes" data-checked="false">
+                        <input id="eaches" data-bind="value: EACHES_BOXES" data-role="switch" data-off-label="No" data-on-label="Yes" data-checked="false">
                     </label>
 
                 </li>
@@ -119,7 +119,7 @@
 
                         <span>Stop sequence followed?</span>
 
-                        <input id="stopSeq" data-bind="value: homeModel.fields.stopSeq" data-role="switch" data-off-label="No" data-on-label="Yes" data-checked="false" >
+                        <input id="stopSeq" data-bind="value: STOP_SEQ" data-role="switch" data-off-label="No" data-on-label="Yes" data-checked="false" >
                     </label>
 
                 </li>
@@ -130,7 +130,7 @@
 
                         <span>Pallet wrapped well?</span>
 
-                        <input id="wrappedWell" data-bind="value: homeModel.fields.wrapped" data-role="switch" data-off-label="No" data-on-label="Yes" data-checked="false">
+                        <input id="wrappedWell" data-bind="value: WRAPPED" data-role="switch" data-off-label="No" data-on-label="Yes" data-checked="false">
                     </label>
 
                 </li>
@@ -141,7 +141,7 @@
 
                         <span>All catch weights accurate?</span>
 
-                        <input id="catchWgt" data-bind="value: homeModel.fields.catchWgt" data-role="switch" data-off-label="No" data-on-label="Yes" data-checked="false">
+                        <input id="catchWgt" data-bind="value: Catch_Wgt" data-role="switch" data-off-label="No" data-on-label="Yes" data-checked="false">
                     </label>
 
                 </li>
@@ -152,15 +152,15 @@
 
                         <span>Comments</span>
 
-                        <input id="comments" data-bind="value: homeModel.fields.comments" type="text">
+                        <input id="comments" data-bind="value: COMMENTS" type="text">
                     </label>
 
                 </li>
             </ul>
 
             <div class="button-group">
-                <a data-role="button" data-bind="events: { click: homeModel.cancel }">Cancel</a>
-                <a class="primary" data-role="button" data-bind="events: { click: homeModel.submit }">Submit</a>
+                <button id="btn-cancel" data-bind="click: reset">Cancel</a>
+                <button id="btn-submit">Submit</a>
             </div>
         </form>
         <!-- START_CUSTOM_CODE_homeModel -->

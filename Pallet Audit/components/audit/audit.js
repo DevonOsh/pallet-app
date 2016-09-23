@@ -1,144 +1,108 @@
-'use strict';
 
-app.home = kendo.observable({
-    onShow: function() {},
-    afterShow: function() {}
-});
 
 // START_CUSTOM_CODE_home
 // Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes
 
 // END_CUSTOM_CODE_home
-(function(parent) {
-    var homeModel = kendo.observable({
-        fields: {
-            comments: '',
-            wrapped: false,
-            stopSeq: false,
-            eachesBoxes: false,
-            meatChem: false,
-            crushable: false,
-            liquidsUpright: false,
-            builtWell: false,
-            mispicks: false,
-            catchWgt: false,
-            palletNum: '',
-            route: '',
-            employee: '',
-            pallet: '',
-        },
-        submit: function() {},
-        cancel: function() {}
-    });
-
-    parent.set('homeModel', homeModel);
-})(app.home);
-
-// START_CUSTOM_CODE_homeModel
-// Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes
-
-/*
-app.home.homeModel.fields = function() {
-    var model = app.home.HomeModel,
-        fields = model.get("fields");
-
-    fields.set({
-        comments: "Place comment here",
-        wrapped: false,
-        stopSeq: false,
-        eachesBoxes: false,
-        meatChem: false,
-        crushable: false,
-        liquidsUpright: false,
-        builtWell: false,
-        mispicks: false,
-        palletNum: "F11",
-        route: "111",
-        employee: "John Doe",
-        pallet: "123123"
-    });
-};
-*/
-
-
-
-app.home.homeModel.submit = function() {
-    var dataProvider = app.data.progressDataProvider;
-
-    dataProvider.loadCatalogs().then(function _catalogsLoaded() {
-       
-        //Get the current date and convert it into a usable format
-        var currentDate = new Date(),
-        	yyyy = currentDate.getFullYear(),
-            mm = currentDate.getMonth()+1,
-            dd = currentDate.getDate(),
-            formatDate = yyyy + "-" + mm + "-" + dd,
-            dateString = currentDate.toString(),
-            time = dateString.substring(16,21);
-        
-        var fieldLocation = app.home.homeModel.fields,
-         	model = {
-                "COMMENTS": String(fieldLocation.comments),
-                "WRAPPED": String(fieldLocation.wrapped),
-                "STOP_SEQ": String(fieldLocation.stopSeq),
-                "EACHES_BOXES": String(fieldLocation.eachesBoxes),
-                "MEAT_CHEM": String(fieldLocation.meatChem),
-                "CRUSHABLE": String(fieldLocation.crushable),
-                "LIQUIDS_UPRIGHT":String(fieldLocation.liquidsUpright),
-                "BUILT_WELL": String(fieldLocation.builtWell),
-                "MISPICKS": String(fieldLocation.mispicks),
-                "Catch_Wgt": String(fieldLocation.catchWgt),
-                "STAMP_TM": time,
-                "STAMP_DT": formatDate,
-                "ROUTE": String(fieldLocation.route),
-                "PALLET_NUM": String(fieldLocation.palletNum),
-                "EMP_NAME": String(fieldLocation.employee),
-                "PALLET_ID": String(fieldLocation.pallet)
-            },
-            jsdoOptions = {
-                name: 'Pallet_Audit',
-                autoFill: false
-            },
-            jsdo = new progress.data.JSDO(jsdoOptions);
-
-        jsdo.create(model);
-        jsdo.saveChanges();
-        
-        app.mobileApp.navigate('#components/welcomeView/view.html');
-        
-        function clearInputs() {
-            
-            //var mispicksSwitch = $("#mispicks").data("kendoMobileSwitch");
-            //var wellBuiltSwitch = $("#wellBuilt").data("kendoMobileSwitch");
-            //var liquidsUprightSwitch = $("#liquidsUpright").data("kendoMobileSwitch");
-            //var crushableSwitch = $("#crushable").data("kendoMobileSwitch");
-            //var meatChemSwitch = $("#meatChem").data("kendoMobileSwitch");
-            //var eachesSwitch = $("#eaches").data("kendoMobileSwitch");
-            //var stopSeqSwitch = $("#stopSeq").data("kendoMobileSwitch");
-            //var wrappedWellSwitch = $("#mispicks").data("kendoMobileSwitch");
-            
-            $("#palletID").val('');
-            $("#empName").val('');
-            $("#route").val('');
-            $("#palletNum").val('');
-            //mispicksSwitch.check(false);
-            //wellBuiltSwitch.check(false);
-            //liquidsUprightSwitch.check(false);
-            //crushableSwitch.check(false);
-            //meatChemSwitch.check(false);
-            //eachesSwitch.check(false);
-            //stopSeqSwitch.check(false);
-            //wrappedWellSwitch.check(false);
-            $("#comments").val('');
+(function(pallet, $){
+    var audit,
+        app = pallet.app = pallet.app || {};
+    
+    app.auditModel = kendo.observable({
+        PALLET_ID: '',
+        EMP_NAME: '',
+        PALLET_NUM: '',
+        ROUTE: '',
+        STAMP_DT: '',
+        STAMP_TM: '',
+        MISPICKS: false,
+        BUILT_WELL: false,
+        LIQUIDS_UPRIGHT: false,
+        CRUSHABLE: false,
+        MEAT_CHEM: false,
+        EACHES_BOXES: false,
+        STOP_SEQ: false,
+        WRAPPED: false,
+        COMMENTS: '',
+        Catch_Wgt: false,
+        reset: function() {
+            this.set('PALLET_ID', '');
+            this.set('EMP_NAME', '');
+            this.set('PALLET_NUM', '');
+            this.set('ROUTE', '');
+            this.set('STAMP_DT', '');
+            this.set('STAMP_TM', '');
+            this.set('COMMENTS', '');
+            this.set('MISPICKS','false');
+            this.set('BUILT_WELL','false');
+            this.set('LIQUIDS_UPRIGHT','false');
+            this.set('CRUSHABLE','false');
+            this.set('MEAT_CHEM','false');
+            this.set('EACHES_BOXES','false');
+            this.set('STOP_SEQ','false');
+            this.set('WRAPPED','false');
+            this.set('Catch_Wgt','false');
         }
-        
-        clearInputs();
-    });    
-};
+    });
+    app.audit = {
+        onShow: function() {
+            //binds the model above to the inputs in the form
+            kendo.bind($("#palletForm"), app.auditModel);
+            
+            //Set the date and time in the model.
+            var date = app.audit.getDate();
+            app.auditModel.set("STAMP_DT", date);
+            
+            var time = app.audit.getTime();
+            app.auditModel.set("STAMP_TM", time);
+            
+            $("#btn-submit").on('click', function submitClick(){
+                app.audit.submitAudit();
+            });
+        },
+        submitAudit: function(){
+            var model = app.auditModel,
+                palletJSDO = app.palletAuditJSDO;
+            	
+            palletJSDO.create(model);
+            palletJSDO.saveChanges();
+        },
+        clearFields: function() {
+            var model = app.auditModel;
+            
+            for (var field in model) {
+                var value = model.get(field);
+                console.log(value);
+                //if (typeof(value) === "boolean")
+                //	model.set(field, false);
+                //else
+                //    model.set(field, '');
+            }
+        },
+        getDate: function() {
+            
+            function getMonth(date) {
+            	var month = date.getMonth() + 1;
+            	return month < 10 ? '0' + month : '' + month; // ('' + month) for string result
+        	}
+            var currentDate = new Date(),
+            	yyyy = currentDate.getFullYear(),
+            	mm = getMonth(currentDate),
+            	dd = currentDate.getDate();
+        	if (dd <= 9)
+        	    dd = '0'+dd;
+            
+        	var formatDate = yyyy + "-" + mm + "-" + dd;
+        	return formatDate;
+        },
+        getTime: function() {
+            var currentDate = new Date(),
+            	dateString = currentDate.toString();
+        	var currentTime = dateString.substring(16, 21);
 
-app.home.homeModel.cancel = function() {
-    app.mobileApp.navigate('#:back');
-};
-
+        	return currentTime;
+        }
+    }
+})(window,jQuery);
 
 // END_CUSTOM_CODE_homeModel

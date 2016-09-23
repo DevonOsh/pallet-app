@@ -110,6 +110,7 @@
         currentItem.addClass('active');
     };
     
+    //JSDO Settings and Session creation
     app.JSDOSettings = {
         "serviceURI": "http://10.0.1.239:8810/Pallet_Audit2",
         "catalogURIs": "http://10.0.1.239:8810/Pallet_Audit2/static/Pallet_Audit2Service.json",
@@ -119,6 +120,7 @@
     app.JSDOSession.login(app.JSDOSettings.serviceURI);
     app.JSDOSession.addCatalog(app.JSDOSettings.catalogURIs);
     
+    //Create PalletAudit and MobileUser JSDOs
     app.palletAuditJSDO = new progress.data.JSDO({
         name: "Pallet_Audit"
     });
@@ -126,6 +128,7 @@
         name: "Mobile_User"
     });
     
+    //App navigation functions
     app.goToWelcome = function() {
         application.navigate("components/welcomeView/welcomeView.html");
     }

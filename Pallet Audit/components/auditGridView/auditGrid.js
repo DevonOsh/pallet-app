@@ -2,10 +2,23 @@
     var auditGrid = null,
         app = palletAudit.app = palletAudit.app || {};
 
+    var windowHeight = function() {
+        return $(window).height();
+    }
+    var gridDataSource = new kendo.data.DataSource({
+        type: "jsdo",
+        transport: {
+            jsdo: app.palletAuditJSDO
+        }
+    });
     app.auditGrid = {
-
         onShow: function () {
-            $("#grid").kendoGrid({
+            $("#audit-grid").kendoGrid({
+                dataSource: gridDataSource,
+                height: windowHeight,
+                scrollable: {
+                    virtual: true
+                },
                 columns: [
                     {
                         field: "PALLET_ID",
@@ -21,6 +34,7 @@
                     },
                     {
                         field: "STAMP_DT",
+                        format: "{0: yyyy-MM-dd}",
                         title: "Date"
                     },
                     {
@@ -28,39 +42,8 @@
                         title: "Employee"
                     }
                 ],
-                dataSource: [
-                    {
-                        PALLET_ID: "000001",
-                        PALLET_NUM: "A1",
-                        ROUTE: "111",
-                        STAMP_DT: "2016-06-22",
-                        EMPLOYEE: "Devon"
-                        },
-                    {
-                        PALLET_ID: "000002",
-                        PALLET_NUM: "B1",
-                        ROUTE: "222",
-                        STAMP_DT: "2016-06-22",
-                        EMPLOYEE: "Cody"
-                        },
-                    {
-                        PALLET_ID: "000003",
-                        PALLET_NUM: "C2",
-                        ROUTE: "123",
-                        STAMP_DT: "2016-06-22",
-                        EMPLOYEE: "Stephen"
-                        },
-                    {
-                        PALLET_ID: "000004",
-                        PALLET_NUM: "D2",
-                        ROUTE: "234",
-                        STAMP_DT: "2016-06-22",
-                        EMPLOYEE: "Robin"
-                        }
-                ],
                 filterable: true,
-                columnMenu: true,
-                mobile: "phone"
+                mobile: true
             });
         }
     }

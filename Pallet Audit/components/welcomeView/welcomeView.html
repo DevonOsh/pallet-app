@@ -1,4 +1,4 @@
-<div data-role="view" data-title="Welcome" data-layout="main" data-show="app.welcomeView.onShow">
+<div data-role="view" data-title="Welcome" data-layout="main" data-before-show="app.welcomeView.beforeShow" data-show="app.welcomeView.onShow">
 
     <!-- START_CUSTOM_CODE_welcomeView -->
     <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
@@ -16,7 +16,7 @@
     </h4>
     
     <div class="button-group button-group-horizontal">
-        <a href="components/home/view.html" data-role="button" class="primary">Create New Audit</a>
+        <a href="components/audit/auditView.html" data-role="button" class="primary">Create New Audit</a>
         <a href="components/masterDetailView/view.html" data-role="button">Past Audits</a>
     </div>
 
