@@ -1,0 +1,33 @@
+<div data-role="view" data-title="Login" data-reload="true" data-layout="login-layout" data-model="app.loginViewModel" data-show="app.loginViewModel.onShow">
+    <div class="signin-view">
+        <form class="form-signin">
+            <h3 class="form-signin-heading">
+                Please Log In
+            </h3>
+            <ul data-role="listview" data-style="inset">
+                <li>
+                    <label>Username
+                        <input id="userName" type="text" data-bind="value: userName" required autofocus>
+                    </label>
+                </li>
+                <li>
+                    <label>Password
+                        <input id="password" type="password" data-bind="value: password" required>
+                    </label>
+                </li>
+            </ul>
+            <a class="btn btn-primary btn-xlg btn-block" data-bind="events: { click: signin }">Sign In</a>
+            <div id="errorMessage" style="visibility: hidden">
+            </div>
+        </form>
+        <div data-role="modalview" id="logout-window" style="width: 300px; height: 200px">
+            <h4>
+                		Are you sure you want to log out?
+            		</h4>
+            <div class="btn-group">
+                <button data-role="button" data-click="app.loginViewModel.yesLogout" id="yes-logout-btn" class="btn btn-lg btn-primary">Yes</button>
+                <button data-role="button" data-click="app.loginViewModel.noLogout" id="no-logout-btn" class="btn btn-lg btn-default">No</button>
+            </div>
+        </div>
+    </div>
+</div>

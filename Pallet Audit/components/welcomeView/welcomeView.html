@@ -1,4 +1,4 @@
-<div data-role="view" data-title="Success" data-layout="main" data-model="app.welcomeView" data-show="app.welcomeView.onShow" data-after-show="app.welcomeView.afterShow">
+<div data-role="view" data-title="Welcome" data-layout="main" data-show="app.welcomeView.onShow">
 
     <!-- START_CUSTOM_CODE_welcomeView -->
     <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
@@ -6,11 +6,14 @@
     <!--***WELCOME SCREEN***-->
 
     <h1>
-    Audit submitted successfully
+    Welcome <span id="firstName"></span>!!
     </h1>
 	<br/>
     <br/>
     <br/>
+    <h4>
+        The last audit was completed on <span id="lastAuditDate"></span>.
+    </h4>
     
     <div class="button-group button-group-horizontal">
         <a href="components/home/view.html" data-role="button" class="primary">Create New Audit</a>
