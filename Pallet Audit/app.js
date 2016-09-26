@@ -135,6 +135,12 @@
     app.goToLogin = function() {
         application.navigate("components/loginView/loginView.html");
     }
+    app.goToAudit = function() {
+        application.navigate("components/audit/auditView.html");
+    }
+    app.goToGrid = function() {
+        application.navigate("components/auditGridView/auditGridView.html");
+    }
 })(window);
 
 // START_CUSTOM_CODE_kendoUiMobileApp

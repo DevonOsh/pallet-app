@@ -12,19 +12,19 @@
     
     app.welcomeView = {
         beforeShow: function() {
-            //Fill and sort the pallet JSDO in descending order by date
-            //var onAfterFill = app.welcomeView.getLastAuditDate;
-            //palletJSDO.subscribe('afterFill', onAfterFill);
-            //palletJSDO.autoSort = true;
-            //palletJSDO.setSortFields(["STAMP_DT:DESCENDING"]);
-            //palletJSDO.fill();
-
             $("#lastAuditDate").html(lastAuditDate);
         },
         onShow: function() {          
             var name = app.userInfo.firstName;
             
             $("#firstName").html(name);
+
+            $("#create-audit-btn").on('click', function() {
+                app.goToAudit();
+            });
+            $("#past-audits-btn").on('click', function() {
+                app.goToGrid();
+            });
         }
         //getLastAuditDate: function(jsdo, success, request) {
         //    lastAuditDate = jsdo.record.data.STAMP_DT;

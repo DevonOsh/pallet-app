@@ -30,6 +30,12 @@ var lastAuditDate = 'unknown';
             app.mobileUserJSDO.fill();
             app.loginViewModel.getLastAuditDate();
         },
+        onHide: function() {
+            var palletJSDO = app.palletAuditJSDO,
+                onAfterFill = app.loginViewModel.onAfterFill;
+
+            palletJSDO.unsubscribe('afterFill', onAfterFill);
+        },
         signin: function () {
             var model = app.loginViewModel,
                 userName = model.userName,

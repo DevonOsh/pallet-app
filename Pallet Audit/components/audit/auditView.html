@@ -1,5 +1,5 @@
 <div data-role="view" data-title="Pallet Audit" data-layout="main" data-model="app.auditModel" data-show="app.audit.onShow">
-    <div id="auditModel" class="form-view">
+    <div id="auditModel" class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
         <form id="palletForm">
             <ul class="form-content" data-role="listview" data-style="inset">
                 <li class="form-content-item">
@@ -158,10 +158,8 @@
                 </li>
             </ul>
 
-            <div class="button-group">
-                <button id="btn-cancel" data-bind="click: reset">Cancel</a>
-                <button id="btn-submit">Submit</a>
-            </div>
+                <button id="btn-submit" class="btn btn-primary btn-xlg btn-block">Submit</a>
+                <button id="btn-cancel" class="btn btn-default btn-xlg btn-block" data-bind="click: reset">Cancel</a>          
         </form>
         <!-- START_CUSTOM_CODE_homeModel -->
         <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
