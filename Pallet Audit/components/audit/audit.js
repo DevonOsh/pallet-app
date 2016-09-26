@@ -8,7 +8,7 @@
     var audit,
         app = pallet.app = pallet.app || {};
     
-    app.auditModel = kendo.observable({
+    app.auditModel = new kendo.data.ObservableObject({
         PALLET_ID: '',
         EMP_NAME: '',
         PALLET_NUM: '',
@@ -24,7 +24,7 @@
         STOP_SEQ: false,
         WRAPPED: false,
         COMMENTS: '',
-        Catch_Wgt: false,
+        Catch_Wgt: false
         /*_reset: function() {
             this.set('PALLET_ID', '');
             this.set('EMP_NAME', '');
@@ -57,8 +57,11 @@
             var time = app.audit.getTime();
             app.auditModel.set("STAMP_TM", time);
             
-            $("#btn-submit").on('click', function submitClick(){
+            $("#btn-submit").on('click', function(){
                 app.audit.submitAudit();
+            });
+            $("#btn-cancel").on('click', function() {
+                app.audit.clearFields();
             });
         },
         submitAudit: function(){
@@ -67,6 +70,9 @@
             	
             palletJSDO.create(model);
             palletJSDO.saveChanges();
+
+            alert("Audit submitted successfully!");
+            app.audit.clearFields();
         },
         clearFields: function() {
             var model = app.auditModel;
@@ -74,10 +80,16 @@
             for (var field in model) {
                 var value = model.get(field);
                 console.log(value);
-                if (typeof(value) === "boolean")
+                if (typeof(value) === "boolean"){
+                    console.log("I have set a bool field.");
                 	model.set(field, false);
-                else
-                    model.set(field, '');
+                }
+                else if (typeof(value) === "string"){
+                    if((field != "STAMP_DT") && (field != "STAMP_TM")) {
+                        model.set(field, '');
+                        console.log("I have set a string field.");
+                    }
+                }
             }
         },
         getDate: function() {            
