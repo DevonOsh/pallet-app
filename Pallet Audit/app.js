@@ -132,6 +132,9 @@
     app.goToWelcome = function() {
         application.navigate("components/welcomeView/welcomeView.html");
     }
+    app.goToLogin = function() {
+        application.navigate("components/loginView/loginView.html");
+    }
 })(window);
 
 // START_CUSTOM_CODE_kendoUiMobileApp

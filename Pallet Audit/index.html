@@ -30,7 +30,7 @@
 
 <body id="kendoUiMobileApp">
     <script src="components/loginView/login.js"></script>
-    <script src="components/masterDetailView/index.js"></script>
+    <!--<script src="components/masterDetailView/index.js"></script>-->
     <script src="components/audit/audit.js"></script>
     <script src="components/welcomeView/welcome.js"></script>
     
@@ -39,6 +39,9 @@
             <div data-role="navbar">
                 <span data-role="view-title"></span>
                 <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
+                <button data-role="button" data-click="app.loginViewModel.logout" data-align="right">
+                	Logout
+                </button>
             </div>
         </header>
     </div>
@@ -58,12 +61,9 @@
             </div>
         </header>
         <ul id="navigation-container" data-role="listview">
-            <!--<li><a href="components/welcomeView/view.html" data-icon="home">Welcome!</a></li>-->
             <li><a href="components/audit/auditView.html" data-icon="edit">Pallet Audit</a></li>
-            <li><a href="components/masterDetailView/view.html" data-icon="organize">Past Audits</a></li>
             <li><a href="components/auditDataView/auditDataView.html">Audit Data</a></li>
             <li><a href="components/auditGridView/auditGridView.html">Audit Grid</a></li>
-            <!--<li id="loginViewModellogout"><a href="components/loginView/view.html?logout=true" data-position="end" data-icon="action">Sign Out</a></li>-->
         </ul>
     </div>
     <!-- START_CUSTOM_CODE_kendoUiMobileApp -->

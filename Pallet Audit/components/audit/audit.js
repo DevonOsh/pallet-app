@@ -25,7 +25,7 @@
         WRAPPED: false,
         COMMENTS: '',
         Catch_Wgt: false,
-        reset: function() {
+        /*_reset: function() {
             this.set('PALLET_ID', '');
             this.set('EMP_NAME', '');
             this.set('PALLET_NUM', '');
@@ -43,6 +43,7 @@
             this.set('WRAPPED','false');
             this.set('Catch_Wgt','false');
         }
+        */
     });
     app.audit = {
         onShow: function() {
@@ -73,14 +74,13 @@
             for (var field in model) {
                 var value = model.get(field);
                 console.log(value);
-                //if (typeof(value) === "boolean")
-                //	model.set(field, false);
-                //else
-                //    model.set(field, '');
+                if (typeof(value) === "boolean")
+                	model.set(field, false);
+                else
+                    model.set(field, '');
             }
         },
-        getDate: function() {
-            
+        getDate: function() {            
             function getMonth(date) {
             	var month = date.getMonth() + 1;
             	return month < 10 ? '0' + month : '' + month; // ('' + month) for string result

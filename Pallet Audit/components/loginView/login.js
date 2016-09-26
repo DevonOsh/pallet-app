@@ -1,3 +1,5 @@
+var lastAuditDate = 'unknown';
+
 (function (pallet, $) {
     var app = pallet.app = pallet.app || {};
 
@@ -26,6 +28,7 @@
         onShow: function () {
             app.JSDOSession.addCatalog(app.JSDOSettings.catalogURIs);
             app.mobileUserJSDO.fill();
+            app.loginViewModel.getLastAuditDate();
         },
         signin: function () {
             var model = app.loginViewModel,
@@ -65,8 +68,7 @@
             }
         },
         logout: function () {
-            //$("#logout-window").kendoMobileModalView("open");
-            alert("This will bring up logout Modal.");
+            $("#logout-window").kendoMobileModalView("open");
         },
         yesLogout: function () {
             app.loginViewModel.userName = '';
@@ -75,6 +77,17 @@
         },
         noLogout: function() {
 			$("#logout-window").kendoMobileModalView("close");
+        },
+        getLastAuditDate: function() {
+            var onAfterFill = app.loginViewModel.onAfterFill,
+                palletJSDO = app.palletAuditJSDO;
+            palletJSDO.subscribe('afterFill', onAfterFill);
+            palletJSDO.autoSort = true;
+            palletJSDO.setSortFields(["STAMP_DT:DESCENDING"]);
+            palletJSDO.fill();
+        },
+        onAfterFill: function(jsdo, succes, request) {
+            lastAuditDate = jsdo.record.data.STAMP_DT;
         }
     });
 
