@@ -1,0 +1,26 @@
+<div id="auditDetailView" data-role="view" data-title="Details" data-model="app.listModel" data-before-show="app.auditListDetail.beforeShow">
+    <header data-role="header">
+        <div data-role="navbar" class="header-text">
+            <a data-role="backbutton" data-align="left">Back</a>
+            <span style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; text-align: center; display: block; margin-left: 70px; margin-right: 70px;">Detail</span>
+        </div>
+    </header>
+    <div id="details">
+        <p>Pallet Audit Id: <span data-bind="html: PALLET_ID"></span></p>
+        <p>Date: <span data-bind="html: STAMP_DT"></span></p>
+        <p>Time: <span data-bind="html: STAMP_TM"></span></p>
+        <p>Employee: <span data-bind="html: EMP_NAME"></span></p>
+        <p>Pallet Number: <span data-bind="html: PALLET_NUM"></span></p>
+        <p>Route: <span data-bind="html: ROUTE"></span></p>
+        <p>Mispicks found?: <span data-bind="html: MISPICKS"></span></p>
+        <p>Pallet built well?: <span data-bind="html: BUILT_WELL"></span></p>
+        <p>All liquids upright?: <span data-bind="html: LIQUIDS_UPRIGHT"></span></p>
+        <p>Crushable cases on bottom of pallet?: <span data-bind="html: CRUSHABLE"></span></p>
+        <p>Meat/Chemicals on bottom?: <span data-bind="html: MEAT_CHEM"></span></p>
+        <p>Eaches in boxes per stop?: <span data-bind="html: EACHES_BOXES"></span></p>
+        <p>Stop sequence followed?: <span data-bind="html: STOP_SEQ"></span></p>
+        <p>Wrapped well?: <span data-bind="html: WRAPPED"></span></p>
+        <p>All catch weights good?: <span data-bind="html: Catch_Wgt"></span></p>
+        <p>Comments: <span data-bind="html: COMMENTS"></span></p>
+    </div>
+</div>

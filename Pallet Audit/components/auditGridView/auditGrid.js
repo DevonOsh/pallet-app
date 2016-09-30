@@ -1,6 +1,6 @@
-(function (palletAudit, $) {
+(function(pallet, $) {
     var auditGrid = null,
-        app = palletAudit.app = palletAudit.app || {};
+        app = pallet.app = pallet.app || {};
 
     var windowHeight = function() {
         return $(window).height();
@@ -61,7 +61,11 @@
                     transport: {
                         jsdo: app.palletAuditJSDO
                     },
-                    filter: { field: "PALLET_ID", operator: "eq", value: e.data.PALLET_ID }
+                    filter: { 
+                        field: "PALLET_ID", 
+                        operator: "eq", 
+                        value: e.data.PALLET_ID 
+                    }
                 },
                 columns: [
                     {
