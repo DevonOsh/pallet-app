@@ -63,8 +63,10 @@
             var model = app.listModel,
                 audit = auditResult.data;
             
+            var date = kendo.toString(audit.STAMP_DT, 'MM/dd/yyyy');
+
             model.set("PALLET_ID", audit.PALLET_ID);
-            model.set("STAMP_DT", audit.STAMP_DT);            
+            model.set("STAMP_DT", date);            
             model.set("STAMP_TM", audit.STAMP_TM);
             model.set("EMP_NAME", audit.EMP_NAME);
             model.set("ROUTE", audit.ROUTE);

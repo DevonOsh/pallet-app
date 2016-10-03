@@ -54,6 +54,8 @@
     app.palletAuditJSDO = new progress.data.JSDO({
         name: "Pallet_Audit"
     });
+
+    //Mobile users JSDO
     app.mobileUserJSDO = new progress.data.JSDO({
         name: "Mobile_User"
     });

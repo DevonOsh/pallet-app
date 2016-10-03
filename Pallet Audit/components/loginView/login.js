@@ -89,7 +89,7 @@ var lastAuditDate = 'unknown';
                 palletJSDO = app.palletAuditJSDO;
             palletJSDO.subscribe('afterFill', onAfterFill);
             palletJSDO.autoSort = true;
-            palletJSDO.setSortFields(["STAMP_DT:DESCENDING"]);
+            palletJSDO.setSortFields(["STAMP_DT:DESCENDING", "STAMP_TM:DESCENDING"]);
             palletJSDO.fill();
         },
         onAfterFill: function(jsdo, succes, request) {

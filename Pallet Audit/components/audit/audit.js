@@ -25,27 +25,14 @@
         WRAPPED: false,
         COMMENTS: '',
         Catch_Wgt: false
-        /*_reset: function() {
-            this.set('PALLET_ID', '');
-            this.set('EMP_NAME', '');
-            this.set('PALLET_NUM', '');
-            this.set('ROUTE', '');
-            this.set('STAMP_DT', '');
-            this.set('STAMP_TM', '');
-            this.set('COMMENTS', '');
-            this.set('MISPICKS','false');
-            this.set('BUILT_WELL','false');
-            this.set('LIQUIDS_UPRIGHT','false');
-            this.set('CRUSHABLE','false');
-            this.set('MEAT_CHEM','false');
-            this.set('EACHES_BOXES','false');
-            this.set('STOP_SEQ','false');
-            this.set('WRAPPED','false');
-            this.set('Catch_Wgt','false');
-        }
-        */
     });
     app.audit = {
+        /*beforeShow: function() {
+            var palletJSDO = app.palletAuditJSDO;
+
+            palletJSDO.autoSort = true;
+            palletJSDO.setSortFields(["STAMP_DT:DESCENDING"]);
+        },*/
         onShow: function() {
             //binds the model above to the inputs in the form
             kendo.bind($("#palletForm"), app.auditModel);
@@ -56,6 +43,15 @@
             
             var time = app.audit.getTime();
             app.auditModel.set("STAMP_TM", time);
+
+            //Fill the pallet audit JSDO and sort descending to get the ID of the of last completed audit
+            var palletJSDO = app.palletAuditJSDO,
+                onAfterFill = app.audit.getReportId;
+
+            palletJSDO.subscribe('afterFill', onAfterFill);
+            palletJSDO.autoSort = true;
+            palletJSDO.setSortFields(["STAMP_DT:DESCENDING", "STAMP_TM:DESCENDING"]);
+            palletJSDO.fill();
             
             $("#btn-submit").on('click', function(){
                 app.audit.submitAudit();
@@ -91,6 +87,15 @@
                     }
                 }
             }
+        },
+        getReportId: function(jsdo, success, request) {
+            var onAfterFill = app.audit.getReportId;
+
+            jsdo.unsubscribe('afterFill', onAfterFill);
+
+            var lastAuditID = jsdo.record.data.PALLET_ID;
+            var currentAuditID = parseInt(lastAuditID) + 1;
+            app.auditModel.set("PALLET_ID", currentAuditID);
         },
         getDate: function() {            
             function getMonth(date) {
