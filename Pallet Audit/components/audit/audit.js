@@ -49,7 +49,7 @@
                 onAfterFill = app.audit.getReportId;
 
             palletJSDO.subscribe('afterFill', onAfterFill);
-            palletJSDO.autoSort = true;
+            //palletJSDO.autoSort = true;
             palletJSDO.setSortFields(["STAMP_DT:DESCENDING", "STAMP_TM:DESCENDING"]);
             palletJSDO.fill();
             
@@ -75,15 +75,12 @@
             
             for (var field in model) {
                 var value = model.get(field);
-                console.log(value);
                 if (typeof(value) === "boolean"){
-                    console.log("I have set a bool field.");
                 	model.set(field, false);
                 }
                 else if (typeof(value) === "string"){
                     if((field != "STAMP_DT") && (field != "STAMP_TM")) {
                         model.set(field, '');
-                        console.log("I have set a string field.");
                     }
                 }
             }

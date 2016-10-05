@@ -54,7 +54,7 @@
     app.palletAuditJSDO = new progress.data.JSDO({
         name: "Pallet_Audit"
     });
-
+    app.palletAuditJSDO.autoSort = true;
     //Mobile users JSDO
     app.mobileUserJSDO = new progress.data.JSDO({
         name: "Mobile_User"
@@ -72,6 +72,9 @@
     }
     app.goToGrid = function() {
         application.navigate("components/auditGridView/auditGridView.html");
+    }
+    app.goToDataList = function() {
+        application.navigate("components/auditDataList/auditListView.html")
     }
     app.goToDetail = function(palletId) {
         application.navigate("components/auditDataList/auditDetailView.html");

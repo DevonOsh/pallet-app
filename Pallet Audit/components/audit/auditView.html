@@ -1,153 +1,86 @@
-<div data-role="view" data-title="Pallet Audit" data-layout="main" data-model="app.auditModel" data-show="app.audit.onShow">
+<div data-role="view" data-title="Pallet Audit" data-layout="main" data-model="app.auditModel" data-reload="true" data-show="app.audit.onShow">
     <div id="auditModel" class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
         <div id="palletForm">
             <ul class="form-content" data-role="listview" data-style="inset">
-                <li class="form-content-item">
-
-
-                    <label>
+                <li class="form-content-item"> <label>
 
                         <span>Employee Name</span>
 
                         <input id="empName" data-bind="value: EMP_NAME" placeholder="John Doe" type="text">
-                    </label>
-
-                </li>
-                <li class="form-content-item">
-
-
-                    <label>
+                    </label> </li>
+                <li class="form-content-item"> <label>
 
                         <span>Route</span>
 
                         <input id="route" data-bind="value: ROUTE" placeholder="123" type="text">
-                    </label>
-
-                </li>
-                <li class="form-content-item">
-
-
-                    <label>
+                    </label> </li>
+                <li class="form-content-item"> <label>
 
                         <span>Pallet Number</span>
 
                         <input id="palletNum" data-bind="value: PALLET_NUM" type="text">
-                    </label>
-
-                </li>
-                <li class="form-content-item">
-
-
-                    <label>
+                    </label> </li>
+                <li class="form-content-item"> <label>
 
                         <span>Any mispicks found?</span>
 
                         <input id="mispicks" data-bind="value: MISPICKS" data-role="switch" data-off-label="No" data-on-label="Yes" data-checked="false"/>
-                    </label>
-
-                </li>
-                <li class="form-content-item">
-
-
-                    <label>
+                    </label> </li>
+                <li class="form-content-item"> <label>
 
                         <span>Pallet built well?</span>
 
                         <input id="wellBuilt" data-bind="value: BUILT_WELL" data-role="switch" data-off-label="No" data-on-label="Yes" data-checked="false" >
-                    </label>
-
-                </li>
-                <li class="form-content-item">
-
-
-                    <label>
+                    </label> </li>
+                <li class="form-content-item"> <label>
 
                         <span>All liquids upright?</span>
 
                         <input id="liquidsUpright" data-bind="value: LIQUIDS_UPRIGHT" data-role="switch" data-off-label="No" data-on-label="Yes" data-checked="false" >
-                    </label>
-
-                </li>
-                <li class="form-content-item">
-
-
-                    <label>
+                    </label> </li>
+                <li class="form-content-item"> <label>
 
                         <span>Crushable cases on bottom of pallet?</span>
 
                         <input id="crushable" data-bind="value: CRUSHABLE" data-role="switch" data-off-label="No" data-on-label="Yes" data-checked="false">
-                    </label>
-
-                </li>
-                <li class="form-content-item">
-
-
-                    <label>
+                    </label> </li>
+                <li class="form-content-item"> <label>
 
                         <span>Meat/Chemicals on bottom of pallet?</span>
 
                         <input id="meatChem" data-bind="value: MEAT_CHEM" data-role="switch" data-off-label="No" data-on-label="Yes" data-checked="false" >
-                    </label>
-
-                </li>
-                <li class="form-content-item">
-
-
-                    <label>
+                    </label> </li>
+                <li class="form-content-item"> <label>
 
                         <span>Eaches in boxes per stop?</span>
 
                         <input id="eaches" data-bind="value: EACHES_BOXES" data-role="switch" data-off-label="No" data-on-label="Yes" data-checked="false">
-                    </label>
-
-                </li>
-                <li class="form-content-item">
-
-
-                    <label>
+                    </label> </li>
+                <li class="form-content-item"> <label>
 
                         <span>Stop sequence followed?</span>
 
                         <input id="stopSeq" data-bind="value: STOP_SEQ" data-role="switch" data-off-label="No" data-on-label="Yes" data-checked="false" >
-                    </label>
-
-                </li>
-                <li class="form-content-item">
-
-
-                    <label>
+                    </label> </li>
+                <li class="form-content-item"> <label>
 
                         <span>Pallet wrapped well?</span>
 
                         <input id="wrappedWell" data-bind="value: WRAPPED" data-role="switch" data-off-label="No" data-on-label="Yes" data-checked="false">
-                    </label>
-
-                </li>
-                <li class="form-content-item">
-
-
-                    <label>
+                    </label> </li>
+                <li class="form-content-item"> <label>
 
                         <span>All catch weights accurate?</span>
 
                         <input id="catchWgt" data-bind="value: Catch_Wgt" data-role="switch" data-off-label="No" data-on-label="Yes" data-checked="false">
-                    </label>
-
-                </li>
-                <li class="form-content-item">
-
-
-                    <label>
+                    </label> </li>
+                <li class="form-content-item"> <label>
 
                         <span>Comments</span>
 
                         <input id="comments" data-bind="value: COMMENTS" type="text">
-                    </label>
-
-                </li>
-            </ul>
-
-                <button id="btn-submit" class="btn btn-primary btn-xlg btn-block">Submit</a>
+                    </label> </li>
+            </ul> <button id="btn-submit" class="btn btn-primary btn-xlg btn-block">Submit</a>
                 <button id="btn-cancel" class="btn btn-default btn-xlg btn-block">Cancel</a>          
         </div><!--end form-->
         <!-- START_CUSTOM_CODE_homeModel -->

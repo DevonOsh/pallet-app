@@ -15,7 +15,9 @@
 		onShow: function() {
             $("#auditList").kendoMobileListView({
                 dataSource: listDataSource,
-                template: "<h4>#= kendo.toString(STAMP_DT, 'MM/dd/yyyy') #</h4>",
+                template: "<h4 class='col-xs-12'>Date: #= kendo.toString(STAMP_DT, 'MM/dd/yyyy') # Time: #= STAMP_TM #" +
+                    "<span class='glyphicon glyphicon-chevron-right pull-right'></span>" + 
+                    "</h4>",
                 click: function(e) {
                     id = e.dataItem.PALLET_ID;
                     app.goToDetail();
@@ -53,8 +55,6 @@
                 return (jsrecord.data.PALLET_ID == id);
             });
 
-            console.log(auditData);
-            //var auditData = dataSource.view(); FIXME remove if fix works
             app.auditListDetail.displayList(auditData);
         },
         onHide: function() {

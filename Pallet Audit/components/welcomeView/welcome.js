@@ -23,7 +23,7 @@
                 app.goToAudit();
             });
             $("#past-audits-btn").on('click', function() {
-                app.goToGrid();
+                app.goToDataList();
             });
         }
         //getLastAuditDate: function(jsdo, success, request) {

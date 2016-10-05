@@ -1,4 +1,5 @@
 
+/*Styles added by Devon*/
 label {
     display: inline;
 }
@@ -17,4 +18,8 @@ label {
     -moz-border-radius: 8px;
     border-radius: 8px;
     margin: 18px 0;
+}
+
+.km-list>li {
+    line-height: 1.9em;
 }
