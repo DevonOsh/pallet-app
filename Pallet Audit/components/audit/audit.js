@@ -49,8 +49,8 @@
                 onAfterFill = app.audit.getReportId;
 
             palletJSDO.subscribe('afterFill', onAfterFill);
-            //palletJSDO.autoSort = true;
-            palletJSDO.setSortFields(["STAMP_DT:DESCENDING", "STAMP_TM:DESCENDING"]);
+            //palletJSDO.autoSort = true; FIXME remove
+            //palletJSDO.setSortFields(["STAMP_DT:DESCENDING", "STAMP_TM:DESCENDING"]); FIXME delete if fixes issue
             palletJSDO.fill();
             
             $("#btn-submit").on('click', function(){

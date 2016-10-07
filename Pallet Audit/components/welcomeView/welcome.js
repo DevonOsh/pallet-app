@@ -13,12 +13,12 @@
     app.welcomeView = {
         beforeShow: function() {
             $("#lastAuditDate").html(lastAuditDate);
+            palletJSDO.setSortFields(["STAMP_DT:DESCENDING", "STAMP_TM:DESCENDING"]);
         },
         onShow: function() {          
             var name = app.userInfo.firstName;
             
             $("#firstName").html(name);
-
             $("#create-audit-btn").on('click', function() {
                 app.goToAudit();
             });

@@ -23,3 +23,11 @@ label {
 .km-list>li {
     line-height: 1.9em;
 }
+
+.list-item-title {
+    font-weight: bold;
+}
+
+.km-modalview .km-scroll-container {
+    text-align: center;
+}

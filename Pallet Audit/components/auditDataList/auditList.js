@@ -15,7 +15,7 @@
 		onShow: function() {
             $("#auditList").kendoMobileListView({
                 dataSource: listDataSource,
-                template: "<h4 class='col-xs-12'>Date: #= kendo.toString(STAMP_DT, 'MM/dd/yyyy') # Time: #= STAMP_TM #" +
+                template: "<h4 class='list-group-item'><span class='list-item-title'>Date:</span> #= kendo.toString(STAMP_DT, 'MM/dd/yyyy') # <span class='list-item-title'>Time:</span> #= STAMP_TM #" +
                     "<span class='glyphicon glyphicon-chevron-right pull-right'></span>" + 
                     "</h4>",
                 click: function(e) {
