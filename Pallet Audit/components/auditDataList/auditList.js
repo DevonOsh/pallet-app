@@ -21,7 +21,8 @@
                 click: function(e) {
                     id = e.dataItem.PALLET_ID;
                     app.goToDetail();
-                }
+                },
+                pullToRefresh: true
             });
 		},
 		onHide: function() {
