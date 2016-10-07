@@ -27,30 +27,14 @@
         Catch_Wgt: false
     });
     app.audit = {
-        /*beforeShow: function() {
-            var palletJSDO = app.palletAuditJSDO;
-
-            palletJSDO.autoSort = true;
-            palletJSDO.setSortFields(["STAMP_DT:DESCENDING"]);
-        },*/
         onShow: function() {
             //binds the model above to the inputs in the form
             kendo.bind($("#palletForm"), app.auditModel);
-            
-            //Set the date and time in the model.
-            var date = app.audit.getDate();
-            app.auditModel.set("STAMP_DT", date);
-            
-            var time = app.audit.getTime();
-            app.auditModel.set("STAMP_TM", time);
 
-            //Fill the pallet audit JSDO and sort descending to get the ID of the of last completed audit
             var palletJSDO = app.palletAuditJSDO,
                 onAfterFill = app.audit.getReportId;
 
             palletJSDO.subscribe('afterFill', onAfterFill);
-            //palletJSDO.autoSort = true; FIXME remove
-            //palletJSDO.setSortFields(["STAMP_DT:DESCENDING", "STAMP_TM:DESCENDING"]); FIXME delete if fixes issue
             palletJSDO.fill();
             
             $("#btn-submit").on('click', function(){
@@ -60,9 +44,19 @@
                 app.audit.clearFields();
             });
         },
+        setDateAndTime: function() {
+            //Set the date and time in the model
+            var date = app.audit.getDate();
+            app.auditModel.set("STAMP_DT", date);
+
+            var time = app.audit.getTime();
+            app.auditModel.set("STAMP_TM", time);
+        },
         submitAudit: function(){
             var model = app.auditModel,
                 palletJSDO = app.palletAuditJSDO;
+
+            app.audit.setDateAndTime();
             	
             palletJSDO.create(model);
             palletJSDO.saveChanges();

@@ -26,13 +26,6 @@
                 app.goToDataList();
             });
         }
-        //getLastAuditDate: function(jsdo, success, request) {
-        //    lastAuditDate = jsdo.record.data.STAMP_DT;
-        //},
-        //onHide: function() {
-        //    var onAfterFill = app.welcomeView.getLastAuditDate;
-        //    palletJSDO.unsubscribe('afterFill', onAfterFill);
-        //}
     }
 })(window,jQuery);
 
