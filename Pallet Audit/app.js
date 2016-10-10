@@ -52,11 +52,9 @@
     
     //Create PalletAudit and MobileUser JSDOs
     app.palletAuditJSDO = new progress.data.JSDO({
-        name: "Pallet_Audit",
-        autoSort: true,
-        autoApplyChanges: false
+        name: "Pallet_Audit"
     });
-    //app.palletAuditJSDO.autoSort = true;
+    app.palletAuditJSDO.autoSort = true;
     //Mobile users JSDO
     app.mobileUserJSDO = new progress.data.JSDO({
         name: "Mobile_User"
