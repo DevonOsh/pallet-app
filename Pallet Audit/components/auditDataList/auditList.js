@@ -52,7 +52,7 @@
         beforeShow: function() {
             var jsdo = app.palletAuditJSDO;
 
-            auditData = jsdo.find( function(jsrecord) {
+            var auditData = jsdo.find( function(jsrecord) {
                 return (jsrecord.data.PALLET_ID == id);
             });
 

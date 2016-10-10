@@ -67,8 +67,8 @@
         clearFields: function() {
             var model = app.auditModel;
             
-            for (var field in model) {
-                var value = model.get(field);
+            for (let field in model) {
+                let value = model.get(field);
                 if (typeof(value) === "boolean"){
                 	model.set(field, false);
                 }
