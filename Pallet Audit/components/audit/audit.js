@@ -52,6 +52,22 @@
             var time = app.audit.getTime();
             app.auditModel.set("STAMP_TM", time);
         },
+        getReportId: function(jsdo, success, request) {
+            var onAfterFill = app.audit.getReportId,
+                currentAuditID;
+
+            jsdo.unsubscribe('afterFill', onAfterFill);
+
+            var lastAuditID = jsdo.record.data.PALLET_ID;
+            if(lastAuditID == null) {
+                currentAuditID = 1000000000;
+                app.auditModel.set("PALLET_ID", currentAuditID);
+            }
+            else {
+                currentAuditID = parseInt(lastAuditID) + 1;
+                app.auditModel.set("PALLET_ID", currentAuditID);
+            }
+        },
         submitAudit: function(){
             var model = app.auditModel,
                 palletJSDO = app.palletAuditJSDO;
@@ -78,15 +94,6 @@
                     }
                 }
             }
-        },
-        getReportId: function(jsdo, success, request) {
-            var onAfterFill = app.audit.getReportId;
-
-            jsdo.unsubscribe('afterFill', onAfterFill);
-
-            var lastAuditID = jsdo.record.data.PALLET_ID;
-            var currentAuditID = parseInt(lastAuditID) + 1;
-            app.auditModel.set("PALLET_ID", currentAuditID);
         },
         getDate: function() {            
             function getMonth(date) {
