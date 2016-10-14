@@ -6,7 +6,8 @@
 // END_CUSTOM_CODE_home
 (function(pallet, $){
     var audit,
-        app = pallet.app = pallet.app || {};
+        app = pallet.app = pallet.app || {},
+        lastAuditID;
     
     app.auditModel = new kendo.data.ObservableObject({
         PALLET_ID: '',
@@ -32,10 +33,46 @@
             kendo.bind($("#palletForm"), app.auditModel);
 
             var palletJSDO = app.palletAuditJSDO,
-                onAfterFill = app.audit.getReportId;
+                //onAfterFill = app.audit.getReportId,
+                session = app.JSDOSession,
+                model = app.auditModel;
+
+            //Attempting offline functions
+            /*
+            function onAfterFill(jsdo, success, request) {
+                jsdo.unsubscribe('afterFill', onAfterFill);
+
+                lastAuditID = jsdo.record.data.PALLET_ID;
+                jsdo.saveLocal();
+                console.log(lastAuditID);        //FIXME remove
+
+                var hasLocal = palletJSDO.readLocal();
+                if(hasLocal) {            //FIXME remove
+                    let data = palletJSDO;    //FIXME remove
+                    console.log(jsdo);           //FIXME remove
+                }
+                //alert("Record found locally: " + aRecord);
+            }
 
             palletJSDO.subscribe('afterFill', onAfterFill);
-            palletJSDO.fill();
+            */
+
+            var isOnline = session.ping({async: false});
+
+            if(isOnline) {
+                palletJSDO.fill().done(
+                    function (jsdo, success, request) {
+                        jsdo.saveLocal();
+                    }
+                );
+            }
+            else {
+                alert("App if offline.");   //Fixme add offline here or remove
+            }
+            //End of offline code
+
+            //palletJSDO.subscribe('afterFill', onAfterFill);
+            //palletJSDO.fill();
             
             $("#btn-submit").on('click', function(){
                 app.audit.submitAudit();
@@ -43,6 +80,23 @@
             $("#btn-cancel").on('click', function() {
                 app.audit.clearFields();
             });
+        },
+        onHide: function() {
+            var palletJSDO = app.palletAuditJSDO,
+                session = app.JSDOSession;
+            var isOnline = session.ping({async: false});
+
+            if(!isOnline) {
+                palletJSDO.addLocalRecords(1);
+            }
+        },
+        setReportID: function() {
+            var palletJSDO = app.palletAuditJSDO;
+
+            lastAuditID = palletJSDO.record.data.PALLET_ID;
+            var newAuditID = parseInt(lastAuditID) + 1;
+
+            app.auditModel.set("PALLET_ID", newAuditID);
         },
         setDateAndTime: function() {
             //Set the date and time in the model
@@ -52,6 +106,7 @@
             var time = app.audit.getTime();
             app.auditModel.set("STAMP_TM", time);
         },
+        /* Removed to test offline function
         getReportId: function(jsdo, success, request) {
             var onAfterFill = app.audit.getReportId,
                 currentAuditID;
@@ -68,16 +123,27 @@
                 app.auditModel.set("PALLET_ID", currentAuditID);
             }
         },
-        submitAudit: function(){
+        */
+        submitAudit: function() {
             var model = app.auditModel,
-                palletJSDO = app.palletAuditJSDO;
+                palletJSDO = app.palletAuditJSDO,
+                session = app.JSDOSession;
 
             app.audit.setDateAndTime();
+            app.audit.setReportID();
             	
             palletJSDO.create(model);
-            palletJSDO.saveChanges();
-
-            alert("Audit submitted successfully!");
+            var isOnline = session.ping({async: false});
+            
+            if(isOnline) {
+                palletJSDO.saveChanges();
+                palletJSDO.acceptChanges();
+                alert("Audit submitted successfully!");
+            }
+            else {
+                palletJSDO.saveLocal();
+                alert("Audit submitted successfully!");
+            }
             app.audit.clearFields();
         },
         clearFields: function() {
