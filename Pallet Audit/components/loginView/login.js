@@ -26,7 +26,7 @@ var lastAuditDate = 'unknown';
             return true;
         },
         onShow: function () {
-            app.JSDOSession.addCatalog(app.JSDOSettings.catalogURIs);
+            //app.JSDOSession.addCatalog(app.JSDOSettings.catalogURIs);     //FIXME remove if ok
             app.mobileUserJSDO.fill();
             app.loginViewModel.getLastAuditDate();
         },

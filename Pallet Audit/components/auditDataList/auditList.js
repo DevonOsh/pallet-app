@@ -8,10 +8,7 @@
         transport: {
             jsdo: app.palletAuditJSDO
         },
-        sort: [
-            { field: "STAMP_DT", dir: "desc" },
-            { field: "STAMP_TM", dir: "asc"}
-        ]
+        sort: { field: "STAMP_DT", dir: "desc" }
     });
 
 	app.auditList = {
@@ -26,14 +23,6 @@
                     app.goToDetail();
                 },
                 pullToRefresh: true
-            });
-
-            listDataSource.online(navigator.onLine);
-            $(window).on("offline", function() {
-                listDataSource.online("false")
-            });
-            $(window).on("online", function() {
-                listDataSource.online("true");
             });
 		},
 		onHide: function() {
