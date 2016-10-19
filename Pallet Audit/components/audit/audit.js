@@ -67,7 +67,7 @@
                 );
             }
             else {
-                alert("App if offline.");   //Fixme add offline here or remove
+                alert("App is offline.");   //Fixme add offline here or remove
             }
             //End of offline code
 
@@ -87,7 +87,7 @@
             var isOnline = session.ping({async: false});
 
             if(!isOnline) {
-                palletJSDO.addLocalRecords(1);
+                palletJSDO.addLocalRecords();
             }
         },
         setReportID: function() {
@@ -134,6 +134,7 @@
             	
             palletJSDO.create(model);
             var isOnline = session.ping({async: false});
+            alert("Is online?: " + isOnline);       //FIXME remove
             
             if(isOnline) {
                 palletJSDO.saveChanges();

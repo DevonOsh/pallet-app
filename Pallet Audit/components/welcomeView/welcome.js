@@ -25,6 +25,12 @@
             $("#past-audits-btn").on('click', function() {
                 app.goToDataList();
             });
+
+            palletJSDO.fill().done(
+                    function (jsdo, success, request) {
+                        jsdo.saveLocal();
+                    }
+                );
         }
     }
 })(window,jQuery);
