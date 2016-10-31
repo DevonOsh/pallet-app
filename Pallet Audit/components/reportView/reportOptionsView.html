@@ -1,0 +1,27 @@
+<div id="reportOptions" data-role="view" data-title="Choose Report Options" data-layout="main" data-show="app.reportOptions.onShow">
+    <div class="form-group">
+        <div class="checkbox">
+            <label>
+                <input class="fields" type="checkbox" value="employee" data-bind="checked: fields" /> Employee
+                <input id="empInput" class="hiddenInput" type="text"/>
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="checkbox">
+            <label>
+                <input class="fields" type="checkbox" value="route" data-bind="checked: fields" /> Route
+                <input id="routeInput" class="hiddenInput" type="text"/>
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="checkbox">
+            <label>
+                <input class="fields" type="checkbox" value="date" data-bind="checked: fields"> Date
+                <input id="dateInput" class="hiddenInput" type="text"/>
+            </label>
+        </div>
+    </div>
+    <button id="choiceButton">OK</button>
+</div>
