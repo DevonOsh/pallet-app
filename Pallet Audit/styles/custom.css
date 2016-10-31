@@ -31,3 +31,7 @@ label {
 .km-modalview .km-scroll-container {
     text-align: center;
 }
+
+#auditList .list-group-item {
+    border: none;
+}

@@ -1,4 +1,4 @@
-<div id="auditDetailView" data-role="view" data-title="Details" data-model="app.listModel" data-before-show="app.auditListDetail.beforeShow">
+<div id="auditDetailView" data-role="view" data-title="Details" data-model="app.listModel" data-before-show="app.auditListDetail.beforeShow" data-hide="app.auditListDetail.onHide">
     <header data-role="header">
         <div data-role="navbar" class="header-text"> <a data-role="backbutton" data-align="left">Back</a> <span style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; text-align: center; display: block; margin-left: 70px; margin-right: 70px;">Detail</span>            </div>
     </header>
@@ -48,6 +48,9 @@
             </li>
             <li class="list-group-item">
                 <h4>All catch weights good?: <span class="pull-right" data-bind="html: Catch_Wgt"></span></h4>
+            </li>
+            <li class="list-group-item">
+                <h4>Ice cream insulated properly?: <span class="pull-right" data-bind="html: ICE_CREAM"></span></h4>
             </li>
             <li class="list-group-item">
                 <h4>Comments: <span class="pull-right" data-bind="html: COMMENTS"></span></h4>

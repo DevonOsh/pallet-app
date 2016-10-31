@@ -7,8 +7,8 @@
         type: "jsdo",
         transport: {
             jsdo: app.palletAuditJSDO
-        },
-        sort: { field: "STAMP_DT", dir: "desc" }
+        }
+        //sort: { field: "STAMP_DT", dir: "desc" }
     });
 
 	app.auditList = {
@@ -26,6 +26,8 @@
             });
 		},
 		onHide: function() {
+            console.log("HIDING");
+            app.palletAuditJSDO.fill();
 		}
 	}
 
@@ -45,7 +47,8 @@
         STOP_SEQ: false,
         WRAPPED: false,
         COMMENTS: '',
-        Catch_Wgt: false
+        Catch_Wgt: false,
+        ICE_CREAM: false
     });
 
     app.auditListDetail = {
@@ -59,6 +62,7 @@
             app.auditListDetail.displayList(auditData);
         },
         onHide: function() {
+            app.palletAuditJSDO.fill();
         },
         displayList: function(auditResult) {
             var model = app.listModel,
@@ -82,6 +86,7 @@
             model.set("WRAPPED", audit.WRAPPED);
             model.set("Catch_Wgt", audit.Catch_Wgt);
             model.set("COMMENTS", audit.COMMENTS);
+            model.set("ICE_CREAM", audit.ICE_CREAM);
         }
     }
 })(window, jQuery);

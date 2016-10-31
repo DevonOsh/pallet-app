@@ -24,7 +24,8 @@
         STOP_SEQ: false,
         WRAPPED: false,
         COMMENTS: '',
-        Catch_Wgt: false
+        Catch_Wgt: false,
+        ICE_CREAM: false
     });
     app.audit = {
         onShow: function() {
@@ -42,6 +43,13 @@
             });
             $("#btn-cancel").on('click', function() {
                 app.audit.clearFields();
+            });
+
+            //Trying to make enter go to next input, must be tested yet
+            $("input").on("keyup", function(e) {
+                if (e.keycode == 13) {
+                    $(this).next("input").focus();
+                }
             });
         },
         setDateAndTime: function() {

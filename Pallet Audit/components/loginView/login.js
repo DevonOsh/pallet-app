@@ -1,7 +1,8 @@
 var lastAuditDate = 'unknown';
 
 (function (pallet, $) {
-    var app = pallet.app = pallet.app || {};
+    var app = pallet.app = pallet.app || {},
+        isLoggedIn = true;
 
     app.userInfo = {
         firstName: "",
@@ -27,10 +28,20 @@ var lastAuditDate = 'unknown';
         },
         onShow: function () {
             //app.JSDOSession.addCatalog(app.JSDOSettings.catalogURIs);     //FIXME remove if ok
-            app.mobileUserJSDO.fill();
-            app.loginViewModel.getLastAuditDate();
+            if (isLoggedIn) {
+                app.mobileUserJSDO.fill();
+                app.palletAuditJSDO.autoSort = true;    //FIXME testing
+                app.palletAuditJSDO.setSortFields(["STAMP_DT:DESCENDING", "STAMP_TM:DESCENDING"]);  //FIXME testing
+                //app.loginViewModel.getLastAuditDate();    FIXME remove if fixes
+            }
+            else {
+                app.JSDOSession.login(app.JSDOSettings.serviceURI);
+                app.JSDOSession.addCatalog(app.JSDOSettings.catalogURIs);
+                app.mobileUserJSDO.fill();
+                app.loginViewModel.getLastAuditDate();
+            }
         },
-        onHide: function() {
+        onHide: function () {
             var palletJSDO = app.palletAuditJSDO,
                 onAfterFill = app.loginViewModel.onAfterFill;
 
@@ -58,7 +69,7 @@ var lastAuditDate = 'unknown';
                     throw new Error("Invalid Username");
                 else {
                     USERNAME = user.data.USERNAME,
-                    PASSWORD = user.data.PASSWORD
+                        PASSWORD = user.data.PASSWORD
                 }
                 if (!(PASSWORD == password))
                     throw new Error("Invalid Password");
@@ -66,6 +77,7 @@ var lastAuditDate = 'unknown';
                     app.userInfo.firstName = user.data.FIRST_NAME;
                     app.userInfo.lastName = user.data.LAST_NAME;
                     app.userInfo.userName = USERNAME;
+                    app.loginViewModel.getLastAuditDate(); //FIXME keep if it fixes
                     app.goToWelcome();
                 }
             } catch (exception) {
@@ -77,22 +89,24 @@ var lastAuditDate = 'unknown';
             $("#logout-window").kendoMobileModalView("open");
         },
         yesLogout: function () {
+            //app.JSDOSession.logout();
+            //isLoggedIn = false;
             app.loginViewModel.userName = '';
             app.loginViewModel.password = '';
             app.goToLogin();
         },
-        noLogout: function() {
-			$("#logout-window").kendoMobileModalView("close");
+        noLogout: function () {
+            $("#logout-window").kendoMobileModalView("close");
         },
-        getLastAuditDate: function() {
+        getLastAuditDate: function () {
             var onAfterFill = app.loginViewModel.onAfterFill,
                 palletJSDO = app.palletAuditJSDO;
             palletJSDO.subscribe('afterFill', onAfterFill);
-            palletJSDO.autoSort = true;
-            palletJSDO.setSortFields(["STAMP_DT:DESCENDING", "STAMP_TM:DESCENDING"]);
+            //palletJSDO.autoSort = true;
+            //palletJSDO.setSortFields(["STAMP_DT:DESCENDING", "STAMP_TM:DESCENDING"]);
             palletJSDO.fill();
         },
-        onAfterFill: function(jsdo, succes, request) {
+        onAfterFill: function (jsdo, succes, request) {
             lastAuditDate = jsdo.record.data.STAMP_DT;
         }
     });
