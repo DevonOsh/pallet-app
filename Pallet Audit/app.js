@@ -79,6 +79,9 @@
     app.goToDetail = function(palletId) {
         application.navigate("components/auditDataList/auditDetailView.html");
     }
+    app.goToReport = function() {
+        application.navigate("components/reportView/reportView.html");
+    }
 })(window);
 
 // END_CUSTOM_CODE_kendoUiMobileApp
