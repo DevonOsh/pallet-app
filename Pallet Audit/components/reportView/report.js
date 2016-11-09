@@ -9,7 +9,8 @@
     });
 
     var filter = {
-        pEmpName: ""
+        pStartDate: "",
+        pEndDate: ""
     };
 
     var palletJSDO = app.palletAuditJSDO;
@@ -18,7 +19,8 @@
         type: "jsdo",
         transport: {
             jsdo: palletJSDO
-        }
+        },
+        group: {field: "EMP_NAME", value: "EMP_NAME"}
     });  
 
     var yesCounts = [0,0,0,0,0,0,0,0,0,0];
@@ -26,52 +28,66 @@
 
     app.reportOptions = {
         onShow: function() {
-            app.reportOptions.createEmpAutocomplete();
-            app.reportOptions.createRouteAutocomplete();
-            app.reportOptions.createDatePicker();
+            //app.reportOptions.createEmpAutocomplete();
+            //app.reportOptions.createRouteAutocomplete();
+            app.reportOptions.createDatePickers();
 
             $("#choiceButton").on("click", function() {
                 app.goToReport();
             });
         },
-        widgetInit: function() {
-        },
+        //create an autocomplete that shows available employee names
         createEmpAutocomplete: function() {
             $("#empInput").kendoAutoComplete({
                 dataSource: searchSource,
                 dataTextField: "EMP_NAME",
+                open: function(e) {
+                    var item = e.item,
+                        text = item.text();
+                },
                 change: function() {
                     var value = this.value();
-                    filter.pEmpName = value;
+                    //filter.pEmpName = value;
                 }
             });
         },
+        //create and autocomplete that shows available routes
         createRouteAutocomplete: function() {
             $("#routeInput").kendoAutoComplete({
                 dataSource: searchSource,
                 dataTextField: "ROUTE",
                 change: function() {
                     var value = this.value();
-                    filterModel.set("route", value);
                 }
             });
+
         },
-        createDatePicker: function() {
-            $("#dateInput").kendoDatePicker({
+        //create a date picker to search for dates
+        createDatePickers: function() {
+            $("#startDateInput").kendoDatePicker({
                 change: function() {
                     var value = this.value();
-                    value = kendo.toString(value,"MM/dd/yy");
-                    filterModel.set("date", value);
+                    filter.pStartDate = value;
+                }
+            });
+
+            $("#endDateInput").kendoDatePicker({
+                change: function() {
+                    var value = this.value();
+                    filter.pEndDate = value;
                 }
             });
         }
     } 
 
     app.report = {
+        beforeShow: function() {
+            app.report.tweakFilter();
+        },
         onShow: function() {          
             palletJSDO.subscribe('AfterFill', app.report.countData);
             palletJSDO.fill();
-            var name = "Devon Osh";
+            console.log(filter);
 
             palletJSDO.invoke("countEntries", filter).done(function(jsdo, success, request){
                 var response = request.response.ttCount.ttCount[0];
@@ -100,8 +116,8 @@
         onHide: function() {
 
         },
-        createFilter: function() {
-            var filters = [],
+        tweakFilter: function() {
+            /*var filters = [],
                 relational = " AND ",
                 filterString = "";
 
@@ -124,6 +140,11 @@
             }
 
             return filters;
+            */
+            if (filter.pEndDate == "") {
+                filter.pEndDate = new Date();
+            }
+
         },
         countData: function(jsdo, success, request) {
              

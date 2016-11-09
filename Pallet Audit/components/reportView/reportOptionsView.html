@@ -1,27 +1,12 @@
-<div id="reportOptions" data-role="view" data-title="Choose Report Options" data-layout="main" data-show="app.reportOptions.onShow">
-    <div class="form-group">
-        <div class="checkbox">
-            <label>
-                <label for="empInput">Employee: </label>
-                <input id="empInput" class="hiddenInput" type="text"/>
-            </label>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="checkbox">
-            <label>
-                <label for="routeInput">Route: </label>
-                <input id="routeInput" class="hiddenInput" type="text"/>
-            </label>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="checkbox">
-            <label>
-                <label for="dateInput">Date: </label>
-                <input id="dateInput" />
-            </label>
-        </div>
-    </div>
-    <button id="choiceButton">OK</button>
+<div id="reportOptions" data-role="view" data-title="Choose Report Options" data-reload="true" data-layout="main" data-show="app.reportOptions.onShow">
+    <div id="reportOptionsForm" class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3"> 
+
+                <h4>Start Date:</h4> 
+                <input id="startDateInput" style="width: 100%" />
+
+                <h4>End Date:</h4>
+                <input id="endDateInput" style="width: 100%" />
+
+        <button id="choiceButton" class="btn btn-primary btn-xlg btn-block">OK</button>
+    </div>  
 </div>
