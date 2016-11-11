@@ -19,8 +19,7 @@
         type: "jsdo",
         transport: {
             jsdo: palletJSDO
-        },
-        group: {field: "EMP_NAME", value: "EMP_NAME"}
+        }
     });  
 
     var yesCounts = [0,0,0,0,0,0,0,0,0,0];
@@ -85,9 +84,12 @@
             app.report.tweakFilter();
         },
         onShow: function() {          
-            palletJSDO.subscribe('AfterFill', app.report.countData);
-            palletJSDO.fill();
+            //palletJSDO.fill();
             console.log(filter);
+            var total;
+
+            $("#startDisplay").html(kendo.toString(filter.pStartDate, "MM/dd/yy"));
+            $("#endDisplay").html(kendo.toString(filter.pEndDate, "MM/dd/yy"));
 
             palletJSDO.invoke("countEntries", filter).done(function(jsdo, success, request){
                 var response = request.response.ttCount.ttCount[0];
@@ -103,7 +105,7 @@
                 yesCounts[8] = response.t_cWeight;
                 yesCounts[9] = response.t_iCream;
 
-                var total = response.t_ttlCount;
+                total = response.t_ttlCount;
 
                 for (var i = 0; i < yesCounts.length; i++) {
                     noCounts[i] = total - yesCounts[i];
@@ -111,7 +113,8 @@
                 console.log(yesCounts);     //FIXME remove
                 console.log(noCounts);      //FIXME remove    
                 app.report.buildChart();
-            });           
+                $("#totalDisplay").html(total);     
+            });      
         },
         onHide: function() {
 
@@ -146,9 +149,6 @@
             }
 
         },
-        countData: function(jsdo, success, request) {
-             
-        },
         buildChart: function() {
             $("#palletReportChart").kendoChart({
                 title: {
@@ -156,14 +156,20 @@
                 },
                 series: [{
                     name: "Yes",
-                    data: yesCounts
+                    data: yesCounts,
+                    color: "#3661e2"
                 },
                 {
                     name: "No",
-                    data: noCounts
+                    data: noCounts,
+                    color: "#9f3635"
                 }],
                 categoryAxis: {
                     categories: ["Mispicks","Built Well","Liquids Upright","Crushables","Meat/Chem", "Eaches","Stop seq","Wrapped well","Catch wgt","Ice cream"]
+                },
+                tooltip: {
+                    visible: true,
+                    template: "#= value #"
                 }
             });
         }

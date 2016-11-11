@@ -219,7 +219,7 @@
 .km-flat .k-slider-selection,
 .km-flat .km-switch-background,
 .km-flat .km-list fieldset legend {
-  color: #10c4b2;
+  color: #9f3635;
 }
 .km-flat .km-rowinsert,
 .km-flat .km-state-active,
@@ -242,10 +242,10 @@
 .km-flat li.km-state-active .km-listview-label,
 .km-flat .km-listview-label input[type=radio]:checked,
 .km-flat .km-listview-label input[type=checkbox]:checked {
-  background: #10c4b2;
+  background: #9f3635;
 }
 .km-flat .km-filter-wrap > input:focus {
-  border-color: #10c4b2;
+  border-color: #9f3635;
 }
 .km-flat .km-badge,
 .km-flat .km-rowdelete {
@@ -256,14 +256,14 @@
 }
 .km-flat .km-checkbox-label:before,
 .km-flat .km-checkbox-label:after {
-  color: #10c4b2;
-  border-color: #10c4b2;
+  color: #9f3635;
+  border-color: #9f3635;
 }
 .km-flat .km-radio-label:before {
-  border-color: #10c4b2;
+  border-color: #9f3635;
 }
 .km-flat .km-radio-label:after {
-  background-color: #10c4b2;
+  background-color: #9f3635;
 }
 /* Validation */
 .km-flat .km-list > li label.km-invalid,
@@ -296,14 +296,14 @@
 /*Custom overrides*/
 /*Primary button*/
 .km-flat .button-group .km-button.primary {
-  background-color: #10c4b2;
+  background-color: #9f3635;
 }
 .km-flat .button-group .km-button.primary.km-state-active {
   background-color: #0eac9d;
 }
 /*Active state for drawer navigation*/
 .km-flat #navigation-container .active {
-  background-color: #10c4b2;
+  background-color: #9f3635;
 }
 .km-flat .km-drawer .km-content {
   background-color: #fcfcfc;

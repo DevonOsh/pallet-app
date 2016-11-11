@@ -1,3 +1,8 @@
 <div id="report" data-role="view" data-title="Reports" data-layout="main" data-before-show="app.report.beforeShow" data-show="app.report.onShow" data-hide="app.report.onHide">
+    <header data-role="header">
+        <div data-role="navbar" class="header-text"> <a data-role="backbutton" data-align="left">Back</a> <span style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; text-align: center; display: block; margin-left: 70px; margin-right: 70px;">Report Results</span>            </div>
+    </header>
+    <h2>Showing results for <span id="startDisplay"></span> to <span id="endDisplay"></span></h2>
     <div id="palletReportChart"></div>
+    <h4>Total Audits: <span id="totalDisplay"></span></h4>
 </div>
