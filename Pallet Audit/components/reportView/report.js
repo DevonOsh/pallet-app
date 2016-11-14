@@ -2,11 +2,14 @@
     var report,
         app = pallet.app = pallet.app || {};
 
+/* Model from attempting to create a queryString for the fill event
+Delete if OE dynamic query works
     var filterModel = kendo.observable({
         employee: "",
         route: "",
         date: ""
     });
+    */
 
     var filter = {
         pStartDate: "",
@@ -22,6 +25,8 @@
         }
     });  
 
+    //Create arrays for holding returned count data and easy display in the chart.
+    //Initialize each array element to 0.
     var yesCounts = [0,0,0,0,0,0,0,0,0,0];
     var noCounts = [0,0,0,0,0,0,0,0,0,0];  
 
@@ -84,13 +89,14 @@
             app.report.tweakFilter();
         },
         onShow: function() {          
-            //palletJSDO.fill();
             console.log(filter);
             var total;
 
             $("#startDisplay").html(kendo.toString(filter.pStartDate, "MM/dd/yy"));
             $("#endDisplay").html(kendo.toString(filter.pEndDate, "MM/dd/yy"));
 
+            //Call invoke, which returns count values for each of the logical fields in the palletAudit table
+            //Store results in the count arrays.
             palletJSDO.invoke("countEntries", filter).done(function(jsdo, success, request){
                 var response = request.response.ttCount.ttCount[0];
 
@@ -109,9 +115,7 @@
 
                 for (var i = 0; i < yesCounts.length; i++) {
                     noCounts[i] = total - yesCounts[i];
-                }
-                console.log(yesCounts);     //FIXME remove
-                console.log(noCounts);      //FIXME remove    
+                }  
                 app.report.buildChart();
                 $("#totalDisplay").html(total);     
             });      
@@ -119,31 +123,8 @@
         onHide: function() {
 
         },
+        //If there is no value in pEndDate, give it today's date.
         tweakFilter: function() {
-            /*var filters = [],
-                relational = " AND ",
-                filterString = "";
-
-            for (var field in filterModel) {
-                var value = filterModel.get(field);
-                if (value != "") {
-                    if(field == "employee") {
-                        //filters.push("EMP_NAME = " + value);
-                        filters.push({field: "EMP_NAME", operator: "eq", value: value});
-                    }
-                    if(field == "route") {
-                        //filters.push("ROUTE = " + value);
-                        filters.push({field: "ROUTE", operator: "eq", value: value});
-                    }
-                    if(field == "date") {
-                        //filters.push("STAMP_DT = " + value);
-                        filters.push({field: "STAMP_DT", operator: "eq", value: value});
-                    }
-                }
-            }
-
-            return filters;
-            */
             if (filter.pEndDate == "") {
                 filter.pEndDate = new Date();
             }
@@ -169,7 +150,7 @@
                 },
                 tooltip: {
                     visible: true,
-                    template: "#= value #"
+                    template: "#= series.name #: #= value #"
                 }
             });
         }
