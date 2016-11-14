@@ -8,10 +8,10 @@
         transport: {
             jsdo: app.palletAuditJSDO
         }
-        //sort: { field: "STAMP_DT", dir: "desc" }
     });
 
 	app.auditList = {
+        //Create the list view using the Pallet Audit JSDO, on click go to the audit detail.
 		onShow: function() {
             $("#auditList").kendoMobileListView({
                 dataSource: listDataSource,
@@ -26,11 +26,11 @@
             });
 		},
 		onHide: function() {
-            console.log("HIDING");
             app.palletAuditJSDO.fill();
 		}
 	}
 
+    //Model for to be bound to the detail list view
     app.listModel = new kendo.data.ObservableObject({
         PALLET_ID: '',
         EMP_NAME: '',
@@ -52,18 +52,19 @@
     });
 
     app.auditListDetail = {
+        //Before showing, filter the Pallet Audit JSDO 
+        //using the pallet ID from selected listview item.
         beforeShow: function() {
             var jsdo = app.palletAuditJSDO;
-
             var auditData = jsdo.find( function(jsrecord) {
                 return (jsrecord.data.PALLET_ID == id);
             });
-
             app.auditListDetail.displayList(auditData);
         },
         onHide: function() {
             app.palletAuditJSDO.fill();
         },
+        //Bind an observable to the fields of the returned audit.
         displayList: function(auditResult) {
             var model = app.listModel,
                 audit = auditResult.data;
