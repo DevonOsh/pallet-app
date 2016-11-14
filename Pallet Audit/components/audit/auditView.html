@@ -3,22 +3,20 @@
         <div id="palletForm">
             <ul class="form-content" data-role="listview" data-style="inset">
                 <li class="form-content-item"> <label>
-
                         <span>Employee Name</span>
-
-                        <input id="empName" data-bind="value: EMP_NAME" placeholder="John Doe" type="text">
-                    </label> </li>
-                <li class="form-content-item"> <label>
-
+                        <input name="empName" id="empName" data-bind="value: EMP_NAME" placeholder="John Doe" type="text" required validationMessage="Name required" />
+                    </label> 
+                </li>
+                <li class="form-content-item"> 
+                    <label>
                         <span>Route</span>
-
-                        <input id="route" data-bind="value: ROUTE" placeholder="123" type="text">
-                    </label> </li>
+                        <input name="route" id="route" data-bind="value: ROUTE" placeholder="123" type="text" required validationMessage="Route required" />
+                    </label> 
+                </li>
                 <li class="form-content-item"> <label>
 
-                        <span>Pallet Number</span>
-
-                        <input id="palletNum" data-bind="value: PALLET_NUM" type="text">
+                        <span>Pallet Number <span class="k-invalid-msg" data-for='palletNum'></span></span>
+                        <input name="palletNum" id="palletNum" data-bind="value: PALLET_NUM" type="text" required validationMessage="Pallet number required" />
                     </label> </li>
                 <li class="form-content-item"> <label>
 
