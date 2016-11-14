@@ -1,9 +1,9 @@
 var lastAuditDate = 'unknown';
 
 (function (pallet, $) {
-    var app = pallet.app = pallet.app || {},
-        isLoggedIn = true;
+    var app = pallet.app = pallet.app || {};
 
+    //Object for storing user info for use throughout the app.
     app.userInfo = {
         firstName: "",
         lastName: "",
@@ -18,35 +18,29 @@ var lastAuditDate = 'unknown';
                 alert('Missing userName');
                 return false;
             }
-
             if (!data.password) {
                 alert('Missing password');
                 return false;
             }
-
             return true;
         },
+        //Fill with data from mobile user table
+        //Set sort fields on the pallet audit jsdo
         onShow: function () {
-            //app.JSDOSession.addCatalog(app.JSDOSettings.catalogURIs);     //FIXME remove if ok
-            if (isLoggedIn) {
-                app.mobileUserJSDO.fill();
-                app.palletAuditJSDO.autoSort = true;    //FIXME testing
-                app.palletAuditJSDO.setSortFields(["STAMP_DT:DESCENDING", "STAMP_TM:DESCENDING"]);  //FIXME testing
-                //app.loginViewModel.getLastAuditDate();    FIXME remove if fixes
-            }
-            else {
-                app.JSDOSession.login(app.JSDOSettings.serviceURI);
-                app.JSDOSession.addCatalog(app.JSDOSettings.catalogURIs);
-                app.mobileUserJSDO.fill();
-                app.loginViewModel.getLastAuditDate();
-            }
+            app.mobileUserJSDO.fill();
+            app.palletAuditJSDO.autoSort = true;
+            app.palletAuditJSDO.setSortFields(["STAMP_DT:DESCENDING", "STAMP_TM:DESCENDING"]);
         },
+        //Unsubscribe from the fill event to prevent unwanted firings of onAfterFill
         onHide: function () {
             var palletJSDO = app.palletAuditJSDO,
                 onAfterFill = app.loginViewModel.onAfterFill;
 
             palletJSDO.unsubscribe('afterFill', onAfterFill);
         },
+        //Validate user inputs against content of the mobile user table
+        //On successful login, get the date of the last audit to be displayed on welcome page
+        //as well as set the contents of the user object
         signin: function () {
             var model = app.loginViewModel,
                 userName = model.userName,
@@ -77,7 +71,7 @@ var lastAuditDate = 'unknown';
                     app.userInfo.firstName = user.data.FIRST_NAME;
                     app.userInfo.lastName = user.data.LAST_NAME;
                     app.userInfo.userName = USERNAME;
-                    app.loginViewModel.getLastAuditDate(); //FIXME keep if it fixes
+                    app.loginViewModel.getLastAuditDate();
                     app.goToWelcome();
                 }
             } catch (exception) {
@@ -85,25 +79,27 @@ var lastAuditDate = 'unknown';
                 $("#errorMessage").css("visibility", "visible");
             }
         },
+        //Open the logout modal
         logout: function () {
             $("#logout-window").kendoMobileModalView("open");
         },
+        //Clear the user info and go back to login page
         yesLogout: function () {
-            //app.JSDOSession.logout();
-            //isLoggedIn = false;
             app.loginViewModel.userName = '';
             app.loginViewModel.password = '';
             app.goToLogin();
         },
+        //close the modal
         noLogout: function () {
             $("#logout-window").kendoMobileModalView("close");
         },
+        //The following two function grab the first record in the jsdo, 
+        //which should be the most recent record
+        //since the jsdo has been sorted
         getLastAuditDate: function () {
             var onAfterFill = app.loginViewModel.onAfterFill,
                 palletJSDO = app.palletAuditJSDO;
             palletJSDO.subscribe('afterFill', onAfterFill);
-            //palletJSDO.autoSort = true;
-            //palletJSDO.setSortFields(["STAMP_DT:DESCENDING", "STAMP_TM:DESCENDING"]);
             palletJSDO.fill();
         },
         onAfterFill: function (jsdo, succes, request) {
