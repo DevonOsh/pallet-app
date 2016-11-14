@@ -97,19 +97,9 @@
             app.auditModel.set("PALLET_ID", currentAuditID);
         },
         getDate: function() {            
-            function getMonth(date) {
-            	var month = date.getMonth() + 1;
-            	return month < 10 ? '0' + month : '' + month; // ('' + month) for string result
-        	}
-            var currentDate = new Date(),
-            	yyyy = currentDate.getFullYear(),
-            	mm = getMonth(currentDate),
-            	dd = currentDate.getDate();
-        	if (dd <= 9)
-        	    dd = '0'+dd;
-            
-        	var formatDate = yyyy + "-" + mm + "-" + dd;
-        	return formatDate;
+            var currentDate = new Date();
+            var dateString = kendo.toString(currentDate, "yyyy-MM-dd");
+        	return dateString;
         },
         getTime: function() {
             var currentDate = new Date(),

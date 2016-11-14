@@ -25,6 +25,9 @@
             $("#past-audits-btn").on('click', function() {
                 app.goToDataList();
             });
+            $("#reports-btn").on('click', function() {
+                app.goToReportOptions();
+            });
         }
     }
 })(window,jQuery);

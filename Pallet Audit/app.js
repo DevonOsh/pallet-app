@@ -82,6 +82,9 @@
     app.goToReport = function() {
         application.navigate("components/reportView/reportView.html");
     }
+    app.goToReportOptions = function() {
+        application.navigate("components/reportView/reportOptionsView.html");
+    }
 })(window);
 
 // END_CUSTOM_CODE_kendoUiMobileApp

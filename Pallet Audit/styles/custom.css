@@ -32,8 +32,17 @@ label {
     text-align: center;
 }
 
+/*styles for date picker inputs*/
+.k-picker-wrap .k-input {
+    height: 2.5em;
+    line-height: 2.5em;
+}
+
 #auditList .list-group-item {
     border: none;
 }
 
-
+/*styles for login button*/
+#signInBtn {
+     color: #ffffff;
+}
