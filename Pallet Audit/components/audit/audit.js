@@ -25,7 +25,8 @@
         WRAPPED: false,
         COMMENTS: '',
         Catch_Wgt: false,
-        ICE_CREAM: false
+        ICE_CREAM: false,
+        IMAGE: ''
     });
     app.audit = {
         onShow: function () {

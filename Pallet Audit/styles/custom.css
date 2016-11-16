@@ -26,6 +26,7 @@ label {
 
 .list-item-title {
     font-weight: bold;
+    color: #9f3635;
 }
 
 .km-modalview .km-scroll-container {
@@ -44,7 +45,12 @@ label {
 
 /*styles for login button*/
 #signInBtn {
-     color: #ffffff;
+    color: #ffffff;
+}
+
+#details li {
+    line-height: 1.2em;
+    padding: 0.2em 0.7em;
 }
 
 span.k-widget.k-tooltip-validation {
