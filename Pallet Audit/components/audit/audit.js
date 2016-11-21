@@ -25,10 +25,12 @@
         WRAPPED: false,
         COMMENTS: '',
         Catch_Wgt: false,
-        ICE_CREAM: false,
-        IMAGE: ''
+        ICE_CREAM: false
     });
     app.audit = {
+        beforeShow: function() {
+            
+        },
         onShow: function () {
             //binds the model above to the inputs in the form
             kendo.bind($("#palletForm"), app.auditModel);

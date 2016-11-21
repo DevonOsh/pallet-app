@@ -56,9 +56,11 @@
         //using the pallet ID from selected listview item.
         beforeShow: function() {
             var jsdo = app.palletAuditJSDO;
+
             var auditData = jsdo.find( function(jsrecord) {
                 return (jsrecord.data.PALLET_ID == id);
             });
+            console.log(auditData);
             app.auditListDetail.displayList(auditData);
         },
         onHide: function() {
@@ -66,6 +68,7 @@
         },
         //Bind an observable to the fields of the returned audit.
         displayList: function(auditResult) {
+            var displayList = app.auditListDetail.displayList;
             var model = app.listModel,
                 audit = auditResult.data;
             

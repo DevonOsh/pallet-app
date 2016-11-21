@@ -72,6 +72,11 @@ Delete if OE dynamic query works
                 change: function() {
                     var value = this.value();
                     filter.pStartDate = value;
+                },
+                open: function() {
+                    var calendar = this.dateView.calendar;
+
+                    calendar.wrapper.width(this.wrapper.width() - 6 );
                 }
             });
 
@@ -79,6 +84,11 @@ Delete if OE dynamic query works
                 change: function() {
                     var value = this.value();
                     filter.pEndDate = value;
+                },
+                open: function() {
+                    var calendar = this.dateView.calendar;
+
+                    calendar.wrapper.width(this.wrapper.width() - 6 );
                 }
             });
         }

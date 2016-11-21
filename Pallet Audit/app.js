@@ -59,6 +59,10 @@
     app.mobileUserJSDO = new progress.data.JSDO({
         name: "Mobile_User"
     });
+    //PICK_LABEL_DETAIL
+    app.pickDetailJSDO = new progress.data.JSDO({
+        name: "Pick_LabeL_Detail"
+    });
     
     //App navigation functions
     app.goToWelcome = function() {
