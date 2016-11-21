@@ -61,7 +61,7 @@
     });
     //PICK_LABEL_DETAIL
     app.pickDetailJSDO = new progress.data.JSDO({
-        name: "Pick_LabeL_Detail"
+        name: "Pick_Label_Detail"
     });
     
     //App navigation functions

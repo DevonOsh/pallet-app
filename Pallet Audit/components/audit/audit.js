@@ -29,7 +29,26 @@
     });
     app.audit = {
         beforeShow: function() {
-            
+            //var currentDate = new Date();
+            //var dateString = kendo.toString(currentDate, "MM/dd/yy");
+            var dateString = "03/11/16";
+
+            var onAfterFill = function(jsdo, success, request){
+                jsdo.unsubscribe('afterFill', onAfterFill);
+                var returnedRecords = jsdo.getData();
+                var routes = [];
+                routes.push(returnedRecords[0].ROUTE);
+                for(var i = 1; i < returnedRecords.length; i++) {
+                    var searchResult = $.inArray(returnedRecords[i].ROUTE, routes);
+                    if(searchResult == -1) {
+                        routes.push(returnedRecords[i].ROUTE);
+                    }
+                }
+                console.log(routes);
+            }
+            var co = ' 3';
+            app.pickDetailJSDO.subscribe('afterFill', onAfterFill);
+            app.pickDetailJSDO.fill("DATE_ = 03/11/16 AND CO = " + co);
         },
         onShow: function () {
             //binds the model above to the inputs in the form
