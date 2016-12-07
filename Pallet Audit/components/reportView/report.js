@@ -13,7 +13,9 @@ Delete if OE dynamic query works
 
     var filter = {
         pStartDate: "",
-        pEndDate: ""
+        pEndDate: "",
+        pEmpName: "",
+        pRoute: ""
     };
 
     var palletJSDO = app.palletAuditJSDO;
@@ -32,8 +34,8 @@ Delete if OE dynamic query works
 
     app.reportOptions = {
         onShow: function() {
-            //app.reportOptions.createEmpAutocomplete();
-            //app.reportOptions.createRouteAutocomplete();
+            app.reportOptions.createEmpAutocomplete();
+            app.reportOptions.createRouteAutocomplete();
             app.reportOptions.createDatePickers();
 
             $("#choiceButton").on("click", function() {
@@ -45,13 +47,9 @@ Delete if OE dynamic query works
             $("#empInput").kendoAutoComplete({
                 dataSource: searchSource,
                 dataTextField: "EMP_NAME",
-                open: function(e) {
-                    var item = e.item,
-                        text = item.text();
-                },
                 change: function() {
                     var value = this.value();
-                    //filter.pEmpName = value;
+                    filter.pEmpName = value;
                 }
             });
         },
@@ -62,6 +60,7 @@ Delete if OE dynamic query works
                 dataTextField: "ROUTE",
                 change: function() {
                     var value = this.value();
+                    filter.pRoute = value;
                 }
             });
 

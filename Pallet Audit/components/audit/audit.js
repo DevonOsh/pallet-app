@@ -29,26 +29,32 @@
     });
     app.audit = {
         beforeShow: function() {
-            //var currentDate = new Date();
-            //var dateString = kendo.toString(currentDate, "MM/dd/yy");
-            var dateString = "03/11/16";
-
-            var onAfterFill = function(jsdo, success, request){
-                jsdo.unsubscribe('afterFill', onAfterFill);
-                var returnedRecords = jsdo.getData();
-                var routes = [];
-                routes.push(returnedRecords[0].ROUTE);
-                for(var i = 1; i < returnedRecords.length; i++) {
-                    var searchResult = $.inArray(returnedRecords[i].ROUTE, routes);
+            //Attempting to get the Routes and Pallets from the PICK_LABEL_DETAIL table
+            var routesDataSource = new kendo.data.DataSource({
+                type: "jsdo",
+                transport: {
+                    jsdo: app.pickDetailJSDO
+                },
+                filter: {
+                    logic: "and",
+                    filters: [
+                        {field: "DATE_", operator: "eq", value: "03/11/16"},
+                        {field: "CO", operator: "eq", value: " 3"}
+                    ]
+                }
+            });
+            var routes = [];
+            routesDataSource.fetch(function() {
+                var data = routesDataSource.data();
+                routes.push(data[0].ROUTE);
+                for(var i = 1; i < data.length; i++){
+                    var searchResult = $.inArray(data[i].ROUTE, routes);
                     if(searchResult == -1) {
-                        routes.push(returnedRecords[i].ROUTE);
+                        routes.push(data[i].ROUTE);
                     }
                 }
-                console.log(routes);
-            }
-            var co = ' 3';
-            app.pickDetailJSDO.subscribe('afterFill', onAfterFill);
-            app.pickDetailJSDO.fill("DATE_ = 03/11/16 AND CO = " + co);
+            });
+            console.log(routes);       //FIXME remove
         },
         onShow: function () {
             //binds the model above to the inputs in the form
@@ -66,15 +72,9 @@
             $("#btn-cancel").on('click', function () {
                 app.audit.clearFields();
             });
-
-            //Trying to make enter go to next input, must be tested yet
-            $("input").on("keyup", function (e) {
-                if (e.keycode == 13) {
-                    $(this).next("input").focus();
-                }
+            $("#takePictureBtn").on('click', function(){
+                app.audit.getImage();
             });
-        },
-        validateData: function () {
         },
         setDateAndTime: function () {
             //Set the date and time in the model
@@ -117,6 +117,28 @@
                     }
                 }
             }
+        },
+        getImage: function() {
+            var options = {
+                allowEdit: true,
+                destinationType: Camera.DestinationType.DATA_URL,
+                targetWidth: 600,
+                targetHeight: 600
+            }
+            function success(imageData) {
+                var image = document.getElementById('displayImage');
+                image.style.display = 'block';
+                image.src = "data:image/jpeg;base64," + imageData;
+
+                var length = imageData.length;
+                var imageSize = 4 * Math.ceil(length / 3);
+                $("#imageData").html("Approximate image size: " + imageSize + " bytes");
+                $("#stringLength").html("String length: " + length);
+            }
+            function error(message){
+                alert(message);
+            }
+            navigator.camera.getPicture(success, error, options);
         },
         getReportId: function (jsdo, success, request) {
             var onAfterFill = app.audit.getReportId;
