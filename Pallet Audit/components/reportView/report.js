@@ -13,9 +13,9 @@ Delete if OE dynamic query works
 
     var filter = {
         pStartDate: "",
-        pEndDate: "",
-        pEmpName: "",
-        pRoute: ""
+        pEndDate: ""
+        //pEmpName: "",
+        //pRoute: ""
     };
 
     var palletJSDO = app.palletAuditJSDO;
@@ -39,7 +39,12 @@ Delete if OE dynamic query works
             app.reportOptions.createDatePickers();
 
             $("#choiceButton").on("click", function() {
-                app.goToReport();
+                if (filter.pStartDate == "") {
+                    alert("Please select a start date.");
+                }
+                else {
+                    app.goToReport();
+                }
             });
         },
         //create an autocomplete that shows available employee names
@@ -147,12 +152,18 @@ Delete if OE dynamic query works
                 series: [{
                     name: "Yes",
                     data: yesCounts,
-                    color: "#3661e2"
+                    color: "#3661e2",
+                    overlay: {
+                        gradient: "none"
+                    }
                 },
                 {
                     name: "No",
                     data: noCounts,
-                    color: "#9f3635"
+                    color: "#9f3635",
+                    overlay: {
+                        gradient: "none"
+                    }
                 }],
                 categoryAxis: {
                     categories: ["Mispicks","Built Well","Liquids Upright","Crushables","Meat/Chem", "Eaches","Stop seq","Wrapped well","Catch wgt","Ice cream"]

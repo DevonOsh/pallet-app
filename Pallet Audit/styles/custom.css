@@ -34,7 +34,7 @@ label {
 }
 
 /*styles for date picker inputs*/
-.k-picker-wrap .k-input {
+.k-picker-wrap .k-input, .k-autocomplete .k-input {
     height: 2.5em;
     line-height: 2.5em;
 }

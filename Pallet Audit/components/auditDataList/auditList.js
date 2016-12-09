@@ -91,6 +91,18 @@
             model.set("Catch_Wgt", audit.Catch_Wgt);
             model.set("COMMENTS", audit.COMMENTS);
             model.set("ICE_CREAM", audit.ICE_CREAM);
+
+            for (var field in model) {
+                var value = model.get(field);
+                if (value === true) {
+                    model.set(field, "yes");
+                }
+                if (value === false) {
+                    model.set(field, "no");
+                }
+            }
+
+            console.log(app.listModel);
         }
     }
 })(window, jQuery);
