@@ -95,10 +95,10 @@
             for (var field in model) {
                 var value = model.get(field);
                 if (value === true) {
-                    model.set(field, "yes");
+                    model.set(field, "Yes");
                 }
                 if (value === false) {
-                    model.set(field, "no");
+                    model.set(field, "No");
                 }
             }
 

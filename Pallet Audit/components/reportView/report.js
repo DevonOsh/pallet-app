@@ -13,19 +13,20 @@ Delete if OE dynamic query works
 
     var filter = {
         pStartDate: "",
-        pEndDate: ""
-        //pEmpName: "",
-        //pRoute: ""
+        pEndDate: "",
+        pEmpName: "",
+        pRoute: ""
     };
 
     var palletJSDO = app.palletAuditJSDO;
-
+    /*
     var searchSource = new kendo.data.DataSource({
         type: "jsdo",
         transport: {
             jsdo: palletJSDO
         }
     });  
+    */
 
     //Create arrays for holding returned count data and easy display in the chart.
     //Initialize each array element to 0.
@@ -46,6 +47,9 @@ Delete if OE dynamic query works
                     app.goToReport();
                 }
             });
+        },
+        createDataArrays: function() {
+            var palletJSDO - app.palletAuditJSDO;
         },
         //create an autocomplete that shows available employee names
         createEmpAutocomplete: function() {
