@@ -19,6 +19,9 @@ Delete if OE dynamic query works
     };
 
     var palletJSDO = app.palletAuditJSDO;
+
+    var nameSearchData = [];
+    var routeSearchData = [];
     /*
     var searchSource = new kendo.data.DataSource({
         type: "jsdo",
@@ -35,8 +38,9 @@ Delete if OE dynamic query works
 
     app.reportOptions = {
         onShow: function() {
-            app.reportOptions.createEmpAutocomplete();
-            app.reportOptions.createRouteAutocomplete();
+            app.reportOptions.createDataArrays();
+            //app.reportOptions.createEmpAutocomplete();
+            //app.reportOptions.createRouteAutocomplete();
             app.reportOptions.createDatePickers();
 
             $("#choiceButton").on("click", function() {
@@ -49,13 +53,35 @@ Delete if OE dynamic query works
             });
         },
         createDataArrays: function() {
-            var palletJSDO - app.palletAuditJSDO;
+            var palletJSDO = app.palletAuditJSDO;
+
+            palletJSDO.subscribe('afterFill', onAfterFill);
+            palletJSDO.fill();
+
+            function onAfterFill(jsdo, success, request) {
+                palletJSDO.unsubscribe('afterFill', onAfterFill);
+                jsdo.foreach(function(audit){
+                    var nameValue = audit.data.EMP_NAME;
+                    var routeValue = audit.data.ROUTE;
+                    var nameCompare = function(name) { return name == nameValue };
+                    var routeCompare = function(route) { return route == routeValue };
+
+                    if(!(nameSearchData.find(nameCompare))) {
+                        nameSearchData.push(nameValue);
+                    }
+                    if(!(routeSearchData.find(routeCompare))) {
+                        routeSearchData.push(routeValue);
+                    }
+
+                });
+            }
+            app.reportOptions.createEmpAutocomplete();
+            app.reportOptions.createRouteAutocomplete();
         },
         //create an autocomplete that shows available employee names
         createEmpAutocomplete: function() {
             $("#empInput").kendoAutoComplete({
-                dataSource: searchSource,
-                dataTextField: "EMP_NAME",
+                dataSource: nameSearchData,
                 change: function() {
                     var value = this.value();
                     filter.pEmpName = value;
@@ -65,8 +91,7 @@ Delete if OE dynamic query works
         //create and autocomplete that shows available routes
         createRouteAutocomplete: function() {
             $("#routeInput").kendoAutoComplete({
-                dataSource: searchSource,
-                dataTextField: "ROUTE",
+                dataSource: routeSearchData,
                 change: function() {
                     var value = this.value();
                     filter.pRoute = value;
