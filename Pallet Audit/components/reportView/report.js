@@ -11,6 +11,8 @@ Delete if OE dynamic query works
     });
     */
 
+    //Filter that is sent back to the invoke method
+    //Is set by the four widgets
     var filter = {
         pStartDate: "",
         pEndDate: "",
@@ -20,16 +22,9 @@ Delete if OE dynamic query works
 
     var palletJSDO = app.palletAuditJSDO;
 
+    //Empty array for holding name and route searchable values
     var nameSearchData = [];
     var routeSearchData = [];
-    /*
-    var searchSource = new kendo.data.DataSource({
-        type: "jsdo",
-        transport: {
-            jsdo: palletJSDO
-        }
-    });  
-    */
 
     //Create arrays for holding returned count data and easy display in the chart.
     //Initialize each array element to 0.
@@ -39,8 +34,6 @@ Delete if OE dynamic query works
     app.reportOptions = {
         onShow: function() {
             app.reportOptions.createDataArrays();
-            //app.reportOptions.createEmpAutocomplete();
-            //app.reportOptions.createRouteAutocomplete();
             app.reportOptions.createDatePickers();
 
             $("#choiceButton").on("click", function() {
@@ -53,6 +46,7 @@ Delete if OE dynamic query works
             });
         },
         createDataArrays: function() {
+            //read from the jsdo and send non-duplicate name values to the searchable data arrays
             var palletJSDO = app.palletAuditJSDO;
 
             palletJSDO.subscribe('afterFill', onAfterFill);

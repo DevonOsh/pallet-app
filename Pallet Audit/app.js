@@ -42,10 +42,10 @@
     
     //JSDO Settings and Session creation
     app.JSDOSettings = {
-        "serviceURI": "http://10.0.1.239:8810/Pallet_Audit2",
-        "catalogURIs": "http://10.0.1.239:8810/Pallet_Audit2/static/Pallet_Audit2Service.json",
+        "serviceURI": "http://10.0.1.97:8810/Pallet_Audit2",
+        "catalogURIs": "http://10.0.1.97:8810/Pallet_Audit2/static/Pallet_Audit2Service.json",
         "authenticationModel":"anonymous"
-    };
+    }
     app.JSDOSession = new progress.data.Session();
     app.JSDOSession.login(app.JSDOSettings.serviceURI);
     app.JSDOSession.addCatalog(app.JSDOSettings.catalogURIs);
