@@ -103,7 +103,8 @@ var lastAuditDate = 'unknown';
             palletJSDO.fill();
         },
         onAfterFill: function (jsdo, succes, request) {
-            lastAuditDate = jsdo.record.data.STAMP_DT;
+            //lastAuditDate = jsdo.record.data.STAMP_DT;
+            console.log("OnAfterFill table has no data.");
         }
     });
 
