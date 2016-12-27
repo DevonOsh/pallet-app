@@ -9,7 +9,7 @@
         app = pallet.app = pallet.app || {};
 
     app.auditModel = new kendo.data.ObservableObject({
-        //PALLET_ID: '',
+        PALLET_ID: '',
         EMP_NAME: '',
         PALLET_NUM: '',
         ROUTE: '',
@@ -63,8 +63,9 @@
             var palletJSDO = app.palletAuditJSDO,
                 onAfterFill = app.audit.getReportId;
 
-            //palletJSDO.subscribe('afterFill', onAfterFill);
+            palletJSDO.subscribe('afterFill', onAfterFill);
             palletJSDO.fill();
+
 
             /*palletJSDO.invoke("GetPalletID").done(
                 function(jsdo, success, request) {
@@ -161,6 +162,7 @@
             }
             else {
                 currentAuditID = parseInt(lastAuditID) + 1;
+                console.log("Current audit id: " + currentAuditID);
             }
             app.auditModel.set("PALLET_ID", currentAuditID);
         },
