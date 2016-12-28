@@ -63,18 +63,6 @@
             var palletJSDO = app.palletAuditJSDO,
                 onAfterFill = app.audit.getReportId;
 
-            palletJSDO.subscribe('afterFill', onAfterFill);
-            palletJSDO.fill();
-
-
-            /*palletJSDO.invoke("GetPalletID").done(
-                function(jsdo, success, request) {
-                    console.log(request.response);
-                }
-            ).fail(
-                function(jsdo, success, request){
-                    console.log(request.response);
-            });*/
 
             $("#btn-submit").on('click', function () {
                 app.audit.submitAudit();
@@ -99,6 +87,7 @@
                 palletJSDO = app.palletAuditJSDO;
 
             app.audit.setDateAndTime();
+            app.audit.getReportId();
 
             var validator = $("#palletForm").kendoValidator().data("kendoValidator");
 
@@ -150,21 +139,20 @@
             }
             navigator.camera.getPicture(success, error, options);
         },
-        getReportId: function (jsdo, success, request) {
-            var onAfterFill = app.audit.getReportId;
+        getReportId: function(){
+            var palletJSDO = app.palletAuditJSDO,
+                palletID = "";
 
-            jsdo.unsubscribe('afterFill', onAfterFill);
-
-            var lastAuditID = jsdo.record.data.PALLET_ID;
-            var currentAuditID;
-            if(!(lastAuditID)) {
-                currentAuditID = 1000000000;
-            }
-            else {
-                currentAuditID = parseInt(lastAuditID) + 1;
-                console.log("Current audit id: " + currentAuditID);
-            }
-            app.auditModel.set("PALLET_ID", currentAuditID);
+            palletJSDO.invoke("GetNextPalletAuditId").done(
+                function(jsdo, success, request) {
+                    //console.log(request.response.sPalletId);
+                    palletID = request.response.sPalletId;
+                    app.auditModel.set("PALLET_ID", palletID);
+                }
+            ).fail(
+                function(jsdo, success, request){
+                    console.log(request.response);
+            });
         },
         getDate: function () {
             var currentDate = new Date();
