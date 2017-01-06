@@ -63,7 +63,6 @@
             var palletJSDO = app.palletAuditJSDO,
                 onAfterFill = app.audit.getReportId;
 
-
             $("#btn-submit").on('click', function () {
                 app.audit.submitAudit();
             });

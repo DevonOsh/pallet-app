@@ -15,9 +15,7 @@ Delete if OE dynamic query works
     //Is set by the four widgets
     var filter = {
         pStartDate: "",
-        pEndDate: "",
-        pEmpName: "",
-        pRoute: ""
+        pEndDate: ""
     };
 
     var palletJSDO = app.palletAuditJSDO;
@@ -33,7 +31,7 @@ Delete if OE dynamic query works
 
     app.reportOptions = {
         onShow: function() {
-            app.reportOptions.createDataArrays();
+            //app.reportOptions.createDataArrays();
             app.reportOptions.createDatePickers();
 
             $("#choiceButton").on("click", function() {
@@ -98,7 +96,8 @@ Delete if OE dynamic query works
             $("#startDateInput").kendoDatePicker({
                 change: function() {
                     var value = this.value();
-                    filter.pStartDate = value;
+                    var formatDate = kendo.toString(value, "MM/dd/yy");
+                    filter.pStartDate = formatDate;
                 },
                 open: function() {
                     var calendar = this.dateView.calendar;
@@ -110,7 +109,8 @@ Delete if OE dynamic query works
             $("#endDateInput").kendoDatePicker({
                 change: function() {
                     var value = this.value();
-                    filter.pEndDate = value;
+                    var formatDate = kendo.toString(value, "MM/dd/yy");
+                    filter.pEndDate = formatDate;
                 },
                 open: function() {
                     var calendar = this.dateView.calendar;
