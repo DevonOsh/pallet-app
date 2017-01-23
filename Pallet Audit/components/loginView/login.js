@@ -82,6 +82,13 @@ var lastAuditDate = 'unknown';
         //Open the logout modal
         logout: function () {
             $("#logout-window").kendoMobileModalView("open");
+            //Testing adding logout buttons functions through jQuery.
+            $("#yes-logout-btn").on('click', function() {
+                app.loginViewModel.yesLogout();
+                });
+            $("#no-logout-btn").on('click', function() {
+                app.loginViewModel.noLogout();
+                });
         },
         //Clear the user info and go back to login page
         yesLogout: function () {

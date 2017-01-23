@@ -92,10 +92,13 @@
 
             if (validator.validate()) {
                 palletJSDO.create(model);
-                palletJSDO.saveChanges();
+                palletJSDO.saveChanges().done(function(jsdo, success, request){
+                    alert("Audit submitted successfully!");
+                    app.audit.clearFields();
+                }).fail(function(jsdo, success, request){
+                    alert("Unable to submit data.");
+                });
 
-                alert("Audit submitted successfully!");
-                app.audit.clearFields();
             }
             else {
                 alert("Please complete the form.");
