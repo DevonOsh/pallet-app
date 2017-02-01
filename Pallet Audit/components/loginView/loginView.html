@@ -20,14 +20,38 @@
             <div id="errorMessage" style="visibility: hidden">
             </div>
         </form>
+
+        <!-- Kendo modal-->
         <div data-role="modalview" id="logout-window" style="width: 300px; height: 200px">
-            <h4>
-                		Are you sure you want to log out?
-            		</h4>
+            <div data-role="header">
+                <span data-role="view-title">Log Out</span>
+            </div>
+            <h4>Are you sure you want to log out?</h4>
             <div class="btn-group">
                 <button id="yes-logout-btn" class="btn btn-lg btn-primary">Yes</button>
                 <button id="no-logout-btn" class="btn btn-lg btn-default">No</button>
             </div>
         </div>
+
+        <!--Bootstrap modal-->
+        <!--
+        <div id="logout-window" class="modal fade">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Logout</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to log out?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="yes-logout-btn" class="btn btn-lg btn-primary">Yes</button>
+                        <button id="no-logout-btn" class="btn btn-lg btn-default">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        -->
+
     </div>
 </div>

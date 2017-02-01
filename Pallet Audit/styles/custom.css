@@ -29,8 +29,21 @@ label {
     color: #9f3635;
 }
 
+.km-modalview {
+    border-radius: 0 0 8px 8px;
+    background-clip: padding-box !important;
+}
+
 .km-modalview .km-scroll-container {
     text-align: center;
+}
+
+.km-modalview .km-header {
+    height: 30px;
+    text-align: center;
+    border-radius: 8px 0;
+    padding: 7px;
+
 }
 
 /*styles for date picker inputs*/
